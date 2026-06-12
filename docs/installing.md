@@ -19,7 +19,7 @@ npm --version
 Install Sticks Lite globally:
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 ```
 
 Verify the command:
@@ -40,7 +40,7 @@ Classroom projects can also install Sticks Lite locally. This keeps the
 language version pinned in `package.json`.
 
 ```sh
-npm install --save-dev @brisqdev/sticks-lite
+npm install --save-dev sticks-lite
 npx sticks main.slite
 ```
 
@@ -82,7 +82,7 @@ student-project/
 Update the global CLI with:
 
 ```sh
-npm update -g @brisqdev/sticks-lite
+npm update -g sticks-lite
 ```
 
 For classroom work, teachers should update intentionally and re-test lesson

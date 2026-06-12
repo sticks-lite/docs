@@ -8,7 +8,7 @@ students and teachers can install it with one command.
 The public install command documented across Sticks Lite is:
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 ```
 
 After installation:
@@ -20,7 +20,7 @@ sticks main.slite
 Local project usage:
 
 ```sh
-npm install --save-dev @brisqdev/sticks-lite
+npm install --save-dev sticks-lite
 npx sticks main.slite
 ```
 
@@ -29,7 +29,7 @@ npx sticks main.slite
 The compiler/interpreter repository is configured as:
 
 ```txt
-@brisqdev/sticks-lite
+sticks-lite
 ```
 
 The executable name is:
@@ -56,11 +56,33 @@ From the compiler/interpreter repository:
 npm install
 npm run check
 npm login
-npm publish --access public
+npm whoami
+npm publish
 ```
 
 The package should be built before publishing. The package manifest uses a
 `prepublishOnly` script so `npm publish` runs the build automatically.
+
+The package is documented as the unscoped npm package `sticks-lite`. Publishing
+as `@brisqdev/sticks-lite` requires ownership of, or publish access to, the
+`@brisqdev` npm scope.
+
+## npm Authentication Requirements
+
+npm requires package publishing to use either two-factor authentication on the
+account or a granular access token created with bypass 2FA enabled.
+
+For an interactive publish with a one-time password:
+
+```sh
+npm publish --otp=123456
+```
+
+Replace `123456` with the current code from your authenticator app. If your
+account uses a security key flow, follow the prompt npm shows during publish.
+
+For automated publishing, create a granular access token with publish access and
+bypass 2FA enabled, then use that token in your CI environment as `NPM_TOKEN`.
 
 ## Versioning
 

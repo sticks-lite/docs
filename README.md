@@ -25,7 +25,7 @@ npm run build
 The compiler/interpreter package is distributed through npm:
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 sticks main.slite
 ```
 

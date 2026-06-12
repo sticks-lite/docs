@@ -7,7 +7,7 @@ interpreter used by the browser IDE.
 ## Install
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 ```
 
 Verify the installation:
@@ -79,7 +79,7 @@ execute print a friendly Sticks Lite error and exit with a non-zero status code.
 For labs, teachers can install the command once on a shared machine:
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 ```
 
 Students can then run:

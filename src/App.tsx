@@ -86,7 +86,7 @@ export default function App() {
         </div>
         <nav className="toplinks" aria-label="External links">
           <a href="https://github.com/brisqdev/sticks-lite/">GitHub</a>
-          <a href="https://www.npmjs.com/package/@brisqdev/sticks-lite">npm</a>
+          <a href="https://www.npmjs.com/package/sticks-lite">npm</a>
         </nav>
       </header>
 
@@ -124,7 +124,7 @@ export default function App() {
           </div>
           <div className="install-card">
             <Code2 size={17} />
-            <code>npm install -g @brisqdev/sticks-lite</code>
+            <code>npm install -g sticks-lite</code>
           </div>
         </div>
         <article

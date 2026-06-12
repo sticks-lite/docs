@@ -8,7 +8,7 @@ can run in a browser IDE or from the command line.
 ## Install
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 sticks main.slite
 ```
 

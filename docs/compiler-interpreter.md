@@ -10,7 +10,7 @@ operating-system APIs.
 Install the official package:
 
 ```sh
-npm install -g @brisqdev/sticks-lite
+npm install -g sticks-lite
 ```
 
 Use the command:
@@ -23,7 +23,7 @@ The package also exposes TypeScript APIs for tools that want to embed Sticks
 Lite.
 
 ```ts
-import { lex, parse, runSource } from "@brisqdev/sticks-lite";
+import { lex, parse, runSource } from "sticks-lite";
 
 const tokens = lex('say "Hello"');
 const program = parse('say "Hello"');
