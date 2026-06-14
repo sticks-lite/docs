@@ -9,7 +9,6 @@ import cli from "../docs/cli.md?raw";
 import grammar from "../docs/grammar.md?raw";
 import errors from "../docs/errors.md?raw";
 import examples from "../docs/examples.md?raw";
-import distribution from "../docs/distribution.md?raw";
 import implementation from "../docs/implementation.md?raw";
 
 export type DocPage = {
@@ -97,13 +96,6 @@ export const pages: DocPage[] = [
     group: "Learn",
     description: "Small programs showing common patterns.",
     body: examples,
-  },
-  {
-    id: "distribution",
-    title: "Distribution",
-    group: "Tooling",
-    description: "Publish and install Sticks Lite for real users.",
-    body: distribution,
   },
   {
     id: "implementation",

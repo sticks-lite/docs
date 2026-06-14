@@ -23,7 +23,6 @@ Use `npx sticks main.slite` when Sticks Lite is installed locally in a project.
 - `Standard Library` documents built-in functions.
 - `Compiler And Interpreter` explains public APIs and runtime design.
 - `Command Line` explains `sticks main.slite` and project execution.
-- `Distribution` explains npm publishing and release checks.
 - `Implementation Notes` explains the TypeScript architecture.
 - `Examples` collects complete beginner programs.
 - `Errors` documents error names and common mistakes.
