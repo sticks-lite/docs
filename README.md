@@ -4,8 +4,7 @@ This repository contains the documentation site for Sticks Lite v1.0.
 
 Sticks Lite is an educational programming language developed by Kabir Sekhon
 for monitored classroom environments. The docs explain installation, the CLI,
-the interpreter, language syntax, built-ins, examples, error messages, and
-distribution.
+the interpreter, language syntax, built-ins, examples, and error messages.
 
 ## Run Locally
 

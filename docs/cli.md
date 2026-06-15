@@ -10,12 +10,6 @@ interpreter used by the browser IDE.
 npm install -g sticks-lite
 ```
 
-Verify the installation:
-
-```sh
-sticks --version
-```
-
 ## Run A File
 
 ```sh

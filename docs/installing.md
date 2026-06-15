@@ -1,20 +1,20 @@
 # Installing
 
 This page covers installing the Sticks Lite compiler/interpreter package and
-verifying that the `sticks` command is available.
+running the `sticks` command.
 
 ## Requirements
 
 Sticks Lite v1.0 is distributed as a Node.js command-line package. Install a
 current long-term support version of Node.js, then use npm to install the
-package globally.
+global CLI.
 
 ```sh
 node --version
 npm --version
 ```
 
-## Install The CLI
+## Install The Global CLI
 
 Install Sticks Lite globally:
 
@@ -36,12 +36,11 @@ sticks main.slite
 
 ## Install For One Project
 
-Classroom projects can also install Sticks Lite locally. This keeps the
-language version pinned in `package.json`.
+Sticks Lite is intended to be installed globally for classroom use. npm may
+display `npm i sticks-lite`, but the recommended command is:
 
 ```sh
-npm install --save-dev sticks-lite
-npx sticks main.slite
+npm install -g sticks-lite
 ```
 
 Add a script:

@@ -12,7 +12,8 @@ npm install -g sticks-lite
 sticks main.slite
 ```
 
-Use `npx sticks main.slite` when Sticks Lite is installed locally in a project.
+npm may display `npm i sticks-lite` on the package page, but Sticks Lite users
+should install globally so the `sticks` command is available directly.
 
 ## Documentation Sections
 
