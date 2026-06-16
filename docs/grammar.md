@@ -87,7 +87,7 @@ new square(x):
     return x * x
 ```
 
-Only top-level function definitions are collected for v1.0.
+Only top-level function definitions are collected for v1.0.1.
 
 ## Protected Names
 

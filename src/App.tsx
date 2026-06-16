@@ -74,7 +74,7 @@ export default function App() {
         <a className="brand" href="#overview" onClick={() => setActiveId("overview")}>
           <img src="/sticks-lite-logo.png" alt="Sticks Lite" />
           <span>Sticks Lite</span>
-          <strong>v1.0</strong>
+          <strong>v1.0.1</strong>
         </a>
         <div className="search">
           <Search size={16} />

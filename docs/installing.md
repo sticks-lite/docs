@@ -5,7 +5,7 @@ running the `sticks` command.
 
 ## Requirements
 
-Sticks Lite v1.0 is distributed as a Node.js command-line package. Install a
+Sticks Lite v1.0.1 is distributed as a Node.js command-line package. Install a
 current long-term support version of Node.js, then use npm to install the
 global CLI.
 

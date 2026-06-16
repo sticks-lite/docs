@@ -52,7 +52,7 @@ export const pages: DocPage[] = [
     id: "language-reference",
     title: "Language Reference",
     group: "Reference",
-    description: "The complete Sticks Lite v1.0 syntax and behavior reference.",
+    description: "The complete Sticks Lite v1.0.1 syntax and behavior reference.",
     body: languageReference,
   },
   {
