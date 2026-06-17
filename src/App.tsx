@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { BookOpen, ChevronRight, Code2, Search } from "lucide-react";
 import { marked } from "marked";
 import { groupedPages, pages } from "./docs";
+import { STICKS_LITE_VERSION_LABEL } from "./version";
 
 marked.use({
   gfm: true,
@@ -74,7 +75,7 @@ export default function App() {
         <a className="brand" href="#overview" onClick={() => setActiveId("overview")}>
           <img src="/sticks-lite-logo.png" alt="Sticks Lite" />
           <span>Sticks Lite</span>
-          <strong>v1.0.1</strong>
+          <strong>{STICKS_LITE_VERSION_LABEL}</strong>
         </a>
         <div className="search">
           <Search size={16} />

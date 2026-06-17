@@ -10,6 +10,7 @@ import grammar from "../docs/grammar.md?raw";
 import errors from "../docs/errors.md?raw";
 import examples from "../docs/examples.md?raw";
 import implementation from "../docs/implementation.md?raw";
+import { STICKS_LITE_VERSION_LABEL } from "./version";
 
 export type DocPage = {
   id: string;
@@ -52,7 +53,7 @@ export const pages: DocPage[] = [
     id: "language-reference",
     title: "Language Reference",
     group: "Reference",
-    description: "The complete Sticks Lite v1.0.1 syntax and behavior reference.",
+    description: `The complete Sticks Lite ${STICKS_LITE_VERSION_LABEL} syntax and behavior reference.`,
     body: languageReference,
   },
   {

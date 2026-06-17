@@ -1,0 +1,2 @@
+export const STICKS_LITE_VERSION = "1.0.5";
+export const STICKS_LITE_VERSION_LABEL = `v${STICKS_LITE_VERSION}`;
