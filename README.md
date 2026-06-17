@@ -3,10 +3,10 @@
 [![Main Repo](https://img.shields.io/badge/main%20repo-sticks--lite-5cad4a.svg)](https://github.com/sticks-lite/sticks-lite)
 [![npm version](https://img.shields.io/npm/v/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
 [![npm downloads](https://img.shields.io/npm/dm/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
-[![Docs](https://img.shields.io/badge/docs-Sticks%20Lite%20v1.0.6-111111.svg)](#start)
+[![Docs](https://img.shields.io/badge/docs-Sticks%20Lite%20v1.0.7-111111.svg)](#start)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-This repository contains the official documentation site for Sticks Lite v1.0.6.
+This repository contains the official documentation site for Sticks Lite v1.0.7.
 
 Sticks Lite is an educational programming language developed by Kabir Sekhon for monitored classroom environments. The docs explain installation, the `sticks` CLI, the interpreter, language syntax, built-ins, examples, implementation notes, and friendly errors.
 

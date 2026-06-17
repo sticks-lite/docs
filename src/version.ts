@@ -1,2 +1,2 @@
-export const STICKS_LITE_VERSION = "1.0.6";
+export const STICKS_LITE_VERSION = "1.0.7";
 export const STICKS_LITE_VERSION_LABEL = `v${STICKS_LITE_VERSION}`;

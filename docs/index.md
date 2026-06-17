@@ -1,6 +1,6 @@
 # Sticks Lite Documentation
 
-Sticks Lite v1.0.6 is a small educational programming language for monitored
+Sticks Lite v1.0.7 is a small educational programming language for monitored
 classroom environments. It is designed to teach beginning computer-science
 concepts with readable syntax, friendly errors, and a compact interpreter that
 can run in a browser IDE or from the command line.
@@ -53,4 +53,4 @@ Sticks Lite is designed for supervised learning. It is not a production language
 
 ## Version
 
-The current language version is `v1.0.6`.
+The current language version is `v1.0.7`.
