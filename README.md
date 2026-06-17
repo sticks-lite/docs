@@ -5,8 +5,6 @@
 [![npm downloads](https://img.shields.io/npm/dm/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
 [![Docs](https://img.shields.io/badge/docs-Sticks%20Lite%20v1.0.1-111111.svg)](#start)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Built with Vite](https://img.shields.io/badge/built%20with-Vite-646cff.svg)](https://vite.dev/)
-[![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev/)
 
 This repository contains the official documentation site for Sticks Lite v1.0.1.
 
