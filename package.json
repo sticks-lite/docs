@@ -1,9 +1,9 @@
 {
   "name": "@brisqdev/sticks-lite-docs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "type": "module",
-  "description": "Documentation site for Sticks Lite v1.0.5.",
+  "description": "Documentation site for Sticks Lite v1.0.6.",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
