@@ -5,9 +5,11 @@ import tutorial from "../docs/tutorial.md?raw";
 import languageReference from "../docs/language-reference.md?raw";
 import standardLibrary from "../docs/standard-library.md?raw";
 import compilerInterpreter from "../docs/compiler-interpreter.md?raw";
+import publicApi from "../docs/public-api.md?raw";
 import cli from "../docs/cli.md?raw";
 import grammar from "../docs/grammar.md?raw";
 import errors from "../docs/errors.md?raw";
+import diagnostics from "../docs/diagnostics.md?raw";
 import examples from "../docs/examples.md?raw";
 import implementation from "../docs/implementation.md?raw";
 import { STICKS_LITE_VERSION_LABEL } from "./version";
@@ -71,6 +73,13 @@ export const pages: DocPage[] = [
     body: compilerInterpreter,
   },
   {
+    id: "public-api",
+    title: "Public API",
+    group: "Tooling",
+    description: "Documented TypeScript exports for tools and classroom integrations.",
+    body: publicApi,
+  },
+  {
     id: "cli",
     title: "Command Line",
     group: "Tooling",
@@ -90,6 +99,13 @@ export const pages: DocPage[] = [
     group: "Reference",
     description: "Friendly errors, hints, and classroom debugging guidance.",
     body: errors,
+  },
+  {
+    id: "diagnostics",
+    title: "Diagnostics",
+    group: "Reference",
+    description: "Modern error hints, CLI messages, and beginner mistake handling.",
+    body: diagnostics,
   },
   {
     id: "examples",

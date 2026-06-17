@@ -44,6 +44,13 @@ npm test
 
 The test suite covers the lexer, parser, interpreter, and friendly errors.
 
+Run the executable examples after building:
+
+```sh
+npm run build
+npm run test:examples
+```
+
 ## Runtime Separation
 
 The CLI may read files and use Node input/output. The language core does not. This keeps the interpreter usable from:
@@ -67,6 +74,19 @@ The web IDE runs one `main.slite` buffer. The CLI can run either a `.slite` file
 
 Successful programs exit with status code `0`. Programs that fail to parse or
 execute print a friendly Sticks Lite error and exit with a non-zero status code.
+
+## Path Errors
+
+The CLI checks common file mistakes before running a program:
+
+- missing files
+- files that do not end in `.slite`
+- empty directories
+- directories without `main.slite`
+- unreadable files or folders
+
+These are reported as `FileError` messages with a hint. The language core does
+not use Node.js file APIs; this validation lives in the CLI wrapper.
 
 ## Classroom Usage
 

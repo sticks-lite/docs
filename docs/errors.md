@@ -7,6 +7,9 @@ NameError at line 3, column 5: `score` does not exist yet.
 Hint: Create it first with `score = ...`, or check the spelling and capitalization.
 ```
 
+See `Diagnostics` for CLI path errors and the newer hint behavior added after
+v1.0.1.
+
 ## Error Names
 
 Sticks Lite uses these built-in error names:

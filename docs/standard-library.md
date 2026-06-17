@@ -90,6 +90,9 @@ say toText(items)
 
 Collection indexes must be whole numbers.
 
+List operation errors include hints. For example, `remove(items, 20)` reports
+the valid index range when the list is not empty.
+
 ## Math
 
 `random(min, max)` returns a random number between `min` and `max`. If both arguments are whole numbers, the result is a whole number.
@@ -121,6 +124,7 @@ Built-ins use teaching-style errors:
 - Wrong argument count raises `ArgumentError`.
 - Wrong argument type raises `TypeError`.
 - Invalid values raise `ValueError`, `IndexError`, or `MathError`.
+- Many errors include hints that name the expected value shape.
 
 Example:
 

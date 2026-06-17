@@ -30,6 +30,9 @@ const program = parse('say "Hello"');
 const result = await runSource('say "Hello"');
 ```
 
+The public API is covered by dedicated tests. See `Public API` for the complete
+export contract.
+
 ## Pipeline
 
 Sticks Lite uses a small, visible pipeline:

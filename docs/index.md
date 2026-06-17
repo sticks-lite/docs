@@ -1,6 +1,6 @@
 # Sticks Lite Documentation
 
-Sticks Lite v1.0.7 is a small educational programming language for monitored
+Sticks Lite v1.0.8 is a small educational programming language for monitored
 classroom environments. It is designed to teach beginning computer-science
 concepts with readable syntax, friendly errors, and a compact interpreter that
 can run in a browser IDE or from the command line.
@@ -23,10 +23,12 @@ should install globally so the `sticks` command is available directly.
 - `Language Reference` defines the syntax and semantics.
 - `Standard Library` documents built-in functions.
 - `Compiler And Interpreter` explains public APIs and runtime design.
+- `Public API` documents tested TypeScript exports.
 - `Command Line` explains `sticks main.slite` and project execution.
 - `Implementation Notes` explains the TypeScript architecture.
 - `Examples` collects complete beginner programs.
 - `Errors` documents error names and common mistakes.
+- `Diagnostics` documents modern hints and CLI error messages.
 
 ## Quick Example
 
@@ -53,4 +55,4 @@ Sticks Lite is designed for supervised learning. It is not a production language
 
 ## Version
 
-The current language version is `v1.0.7`.
+The current language version is `v1.0.8`.
