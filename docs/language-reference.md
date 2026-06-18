@@ -1,6 +1,6 @@
 # Language Reference
 
-This reference describes Sticks Lite v1.0.11. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
+This reference describes Sticks Lite v1.0.13. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
 
 ## Design Principles
 
@@ -53,6 +53,14 @@ Single-line comments start with `#`.
 x = 5 # This is also a comment
 ```
 
+Line comments may appear beside real code. A `#` inside quoted text is treated
+as text, not as a comment.
+
+```slite
+say "# not a comment"
+say "score #1" # this part is a comment
+```
+
 Block comments use `/* */`.
 
 ```slite
@@ -60,6 +68,14 @@ Block comments use `/* */`.
 This explains the program.
 */
 say "Done"
+```
+
+Block comments may appear between tokens or beside real code. Comment markers
+inside quoted text are treated as text.
+
+```slite
+x = 1 /* between tokens */ + 2
+say "/* not a comment */"
 ```
 
 Nested block comments are not supported.
@@ -230,11 +246,17 @@ Arithmetic:
 div integer division
 ```
 
+Division by zero, modulo by zero, and integer division by zero raise
+`MathError`. `div` truncates toward zero.
+
 Comparison:
 
 ```txt
 == != < > <= >=
 ```
+
+Ordering comparisons (`<`, `>`, `<=`, `>=`) work on numbers only. Equality and
+inequality compare values by type and contents.
 
 Boolean:
 
@@ -261,6 +283,10 @@ say "Score: " + toText(score)
 ## Precedence
 
 Sticks Lite follows familiar math and logic precedence.
+
+The numeric semantics are covered by stability tests for precedence, unary
+minus, decimal division, integer division, remainder, comparisons, and math
+built-ins.
 
 ```txt
 ()
@@ -360,7 +386,7 @@ foreach score in scores:
     say toText(score)
 ```
 
-Dictionary iteration is not supported in v1.0.11.
+Dictionary iteration is not supported in v1.0.13.
 
 Use `break` and `continue` inside loops.
 
@@ -410,6 +436,9 @@ new stop:
 
 If a function finishes without `return`, it also returns `null`.
 
+Functions are protected names. A program cannot later overwrite a function with
+a variable or constant, and two functions cannot use the same name.
+
 ## Lists
 
 Lists use square brackets and are mutable.
@@ -420,7 +449,14 @@ items[0] = 99
 push(items, 4)
 ```
 
-Indexes start at `0`. Invalid indexes raise `IndexError`.
+Indexes start at `0`. Invalid indexes raise `IndexError`. Nested lists can be
+indexed and updated through chained indexes.
+
+```slite
+matrix = [[1, 2], [3, 4]]
+matrix[1][0] = 30
+say toText(matrix[1][0])
+```
 
 ## Tuples
 
@@ -433,6 +469,9 @@ say toText(point[0])
 
 One-item tuples are not supported. `(10)` is a grouped expression, not a tuple.
 
+Tuples may contain nested values and can be indexed, but assigning to a tuple
+index raises `TypeError`.
+
 ## Dictionaries
 
 Dictionaries use curly braces. Keys must be quoted text.
@@ -441,6 +480,15 @@ Dictionaries use curly braces. Keys must be quoted text.
 person = {"name": "Maya", "age": 13}
 say person["name"]
 person["age"] = 14
+```
+
+Dictionary values can be nested collections. Dictionary entries can be assigned
+with text keys.
+
+```slite
+student = {"scores": [8, 9]}
+student["scores"][0] = 10
+student["grade"] = "A"
 ```
 
 Dot access is not supported.
@@ -452,6 +500,8 @@ say person.name
 ```
 
 Missing keys raise `KeyError`.
+
+Dictionary iteration is not supported. Use lists or tuples with `foreach`.
 
 ## Exceptions
 
@@ -468,7 +518,7 @@ when error:
 
 `when error:` catches every Sticks Lite error and should be last.
 
-Users cannot define, create, raise, or throw custom errors in v1.0.11.
+Users cannot define, create, raise, or throw custom errors in v1.0.13.
 
 ## Scope
 
@@ -497,3 +547,6 @@ test()
 ```
 
 Functions can read global constants and built-ins. Assigning to a name inside a function creates or updates the local function scope unless the name is protected.
+
+Protected names include built-in function names, built-in error names, constants,
+and existing function names.

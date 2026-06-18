@@ -102,6 +102,8 @@ roll = random(1, 6)
 say toText(roll)
 ```
 
+`random` requires `min <= max`.
+
 `round(number)` rounds to the nearest whole number.
 
 `floor(number)` rounds down.
@@ -116,6 +118,8 @@ say toText(floor(3.9))
 say toText(ceiling(3.1))
 say toText(absolute(-5))
 ```
+
+Math built-ins require number arguments and are covered by stability tests.
 
 ## Error Behavior
 

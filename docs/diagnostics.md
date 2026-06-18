@@ -11,7 +11,7 @@ NameError at line 2, column 12: `score` does not exist yet.
 Hint: Create it first with `score = ...`, or check the spelling and capitalization.
 ```
 
-Hints are optional, but Sticks Lite v1.0.11 includes hints for many beginner
+Hints are optional, but Sticks Lite v1.0.13 includes hints for many beginner
 mistakes in the lexer, parser, CLI wrapper, and interpreter.
 
 ## CLI Diagnostics
@@ -68,6 +68,9 @@ Hint: Check the file permissions and try again from a readable folder.
 ```
 
 ## Parser Diagnostics
+
+Comments are ignored only outside quoted text. `#`, `/*`, and `*/` inside text
+values are preserved as text.
 
 Missing colon:
 
@@ -126,16 +129,22 @@ Undefined names suggest creating the variable or checking spelling.
 
 Wrong function argument counts show the expected function call shape.
 
+Protected-name errors identify whether the collision is with a built-in
+function name, error name, constant, or function name.
+
 Invalid indexes explain that indexes must be whole numbers and show the valid
 range when possible.
 
 Bad dictionary keys explain that dictionary indexes must be quoted text.
 
-Bad collection operations explain which value types work. In v1.0.11,
+Bad collection operations explain which value types work. In v1.0.13,
 `foreach` supports lists and tuples only; dictionary iteration is unsupported.
 
 Bad type conversions explain which conversion is expected. For example,
 `toNumber(True)` reports that `toNumber` converts text, not boolean values.
+
+Math errors identify division, integer division, and modulo by zero separately.
+Ordering comparisons explain that `<`, `>`, `<=`, and `>=` compare numbers.
 
 ## Runtime I/O
 
