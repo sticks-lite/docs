@@ -1,6 +1,6 @@
 # Getting Started
 
-Sticks Lite is a small text-based programming language for teaching basic computer-science concepts in monitored educational environments. It uses `.slite` files, clear command-style syntax, and Python-inspired indentation.
+Sticks Lite is a small text-based programming language for teaching basic computer-science concepts in monitored educational environments. It uses `.slite` source files, clear command-style syntax, and Python-inspired indentation.
 
 The default entry file is `main.slite`. A program runs from top to bottom, and no `main` function is required.
 
@@ -10,7 +10,7 @@ say "Hello, world!"
 
 ## Files
 
-Use the `.slite` extension for Sticks Lite programs.
+Use the `.slite` extension for Sticks Lite source files.
 
 ```txt
 main.slite
@@ -18,8 +18,8 @@ hello.slite
 loops.slite
 ```
 
-When a folder is run by the CLI, Sticks Lite looks for an exact lowercase
-`main.slite` in that folder.
+When a folder is run by the `sticks` CLI, Sticks Lite looks for an exact
+lowercase `main.slite` source file in that folder.
 
 ## Output
 

@@ -11,18 +11,18 @@ NameError at line 2, column 12: `score` does not exist yet.
 Hint: Create it first with `score = ...`, or check the spelling and capitalization.
 ```
 
-Hints are optional, but Sticks Lite v1.0.13 includes hints for many beginner
+Hints are optional, but Sticks Lite v1.0.14 includes hints for many beginner
 mistakes in the lexer, parser, CLI wrapper, and interpreter.
 
 ## CLI Diagnostics
 
-The `sticks` command validates the path before running code.
+The `sticks` CLI validates the path before running a `.slite` source file.
 
 Wrong extension:
 
 ```txt
-FileError: Sticks Lite can only run `.slite` files. Received `README.md`.
-Hint: Rename the file to end in `.slite`, such as `main.slite`.
+FileError: Sticks Lite can only run `.slite` source files. Received `README.md`.
+Hint: Rename the source file to end in `.slite`, such as `main.slite`.
 ```
 
 Missing file:
@@ -56,8 +56,8 @@ Hint: Rename the file exactly to `main.slite` so the project runs the same way o
 Windows-style wrong extension:
 
 ```txt
-FileError: Sticks Lite can only run `.slite` files. Received `README.md`.
-Hint: Rename the file to end in `.slite`, such as `main.slite`.
+FileError: Sticks Lite can only run `.slite` source files. Received `README.md`.
+Hint: Rename the source file to end in `.slite`, such as `main.slite`.
 ```
 
 Unreadable path:
@@ -137,7 +137,7 @@ range when possible.
 
 Bad dictionary keys explain that dictionary indexes must be quoted text.
 
-Bad collection operations explain which value types work. In v1.0.13,
+Bad collection operations explain which value types work. In v1.0.14,
 `foreach` supports lists and tuples only; dictionary iteration is unsupported.
 
 Bad type conversions explain which conversion is expected. For example,
@@ -149,11 +149,12 @@ Ordering comparisons explain that `<`, `>`, `<=`, and `>=` compare numbers.
 ## Runtime I/O
 
 The interpreter passes `ask` prompts to `RuntimeIO.readInput` exactly as written
-in source. The CLI adds terminal-friendly prompt spacing separately.
+in the source file. The `sticks` CLI adds terminal-friendly prompt spacing
+separately.
 
 Output order is deterministic: each `say` statement writes before the next
-statement runs. In the CLI, each output line ends with `\n`; in `RunResult`,
-output values are stored without newline characters.
+statement runs. In the `sticks` CLI, each output line ends with `\n`; in
+`RunResult`, output values are stored without newline characters.
 
 ## Handling Errors In Programs
 

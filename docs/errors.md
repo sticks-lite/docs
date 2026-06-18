@@ -35,8 +35,8 @@ Running the wrong file:
 sticks README.md
 ```
 
-Sticks Lite only runs `.slite` files. Use `sticks main.slite`, or pass a folder
-that contains `main.slite`.
+Sticks Lite only runs `.slite` source files. Use `sticks main.slite`, or pass a
+folder that contains `main.slite`.
 
 Missing colon:
 

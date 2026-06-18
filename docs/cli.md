@@ -1,6 +1,6 @@
-# Command Line
+# CLI
 
-The `sticks` command runs Sticks Lite files and project directories from a
+The `sticks` CLI runs `.slite` source files and project directories from a
 terminal. It is a small Node.js wrapper around the same platform-independent
 interpreter used by the browser IDE.
 
@@ -8,6 +8,8 @@ interpreter used by the browser IDE.
 
 ```sh
 npm install -g sticks-lite
+sticks --version
+sticks main.slite
 ```
 
 ## Run A File
@@ -18,8 +20,8 @@ sticks examples/hello.slite
 
 ## Run A Project Directory
 
-When given a directory, the CLI looks for an entry file named exactly
-`main.slite`.
+When given a directory, the `sticks` CLI looks for an entry source file named
+exactly `main.slite`.
 
 ```sh
 sticks path/to/sticks-project
@@ -36,7 +38,7 @@ sticks --version
 
 ## Build
 
-When developing the compiler/interpreter repository from source:
+When developing the interpreter repository from source:
 
 ```sh
 npm install
@@ -63,10 +65,10 @@ npm run test:examples
 
 ## Runtime Separation
 
-The CLI may read files and use Node input/output. The language core does not. This keeps the interpreter usable from:
+The `sticks` CLI may read source files and use Node input/output. The language core does not. This keeps the interpreter usable from:
 
 - the browser IDE
-- the CLI
+- the `sticks` CLI
 - tests
 - future classroom tools
 
@@ -78,7 +80,8 @@ The conventional entry file is:
 main.slite
 ```
 
-The web IDE runs one `main.slite` buffer. The CLI can run either a `.slite` file or a directory containing `main.slite`.
+The web IDE runs one `main.slite` buffer. The `sticks` CLI can run either a
+`.slite` source file or a directory containing `main.slite`.
 
 `Main.slite`, `MAIN.SLITE`, and other differently cased names are rejected even
 on case-insensitive filesystems.
@@ -90,10 +93,10 @@ execute print a friendly Sticks Lite error and exit with a non-zero status code.
 
 ## Path Errors
 
-The CLI checks common file mistakes before running a program:
+The `sticks` CLI checks common source file mistakes before running a program:
 
 - missing files
-- files that do not end in `.slite`
+- source files that do not end in `.slite`
 - empty directories
 - directories without `main.slite`
 - directories with differently cased entry files such as `Main.slite`
@@ -107,7 +110,7 @@ Windows-style paths are handled in diagnostics, so a path such as
 
 ## Input, Output, And Newlines
 
-The CLI appends one space after non-empty prompts that do not already end in
+The `sticks` CLI appends one space after non-empty prompts that do not already end in
 whitespace. Empty prompts stay empty.
 
 Program output is written in execution order. Each `say` statement writes one
@@ -128,5 +131,8 @@ Students can then run:
 sticks main.slite
 ```
 
-Sticks Lite is intended for monitored classroom environments. It should not be
-used as a sandbox for untrusted code or as part of production systems.
+Use Sticks Lite in supervised learning settings. A teacher, mentor, or parent
+should review what students run and decide whether each lesson is appropriate.
+
+Sticks Lite is not for production apps, security sandboxing, unsupervised
+execution of untrusted source files, or safety-critical work.

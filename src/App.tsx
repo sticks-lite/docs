@@ -125,7 +125,11 @@ export default function App() {
           </div>
           <div className="install-card">
             <Code2 size={17} />
-            <code>npm install -g sticks-lite</code>
+            <div>
+              <code>npm install -g sticks-lite</code>
+              <code>sticks --version</code>
+              <code>sticks main.slite</code>
+            </div>
           </div>
         </div>
         <article

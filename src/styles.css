@@ -218,7 +218,7 @@ a {
 
 .install-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 9px;
   border: 1px solid #cfe2ca;
   background: #f2f8ef;
@@ -226,12 +226,17 @@ a {
   border-radius: 12px;
   padding: 13px 14px;
   box-shadow: 0 14px 30px rgba(28, 64, 23, 0.08);
-  white-space: nowrap;
+}
+
+.install-card div {
+  display: grid;
+  gap: 4px;
 }
 
 .install-card code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .markdown {

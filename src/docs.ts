@@ -67,9 +67,9 @@ export const pages: DocPage[] = [
   },
   {
     id: "compiler-interpreter",
-    title: "Compiler And Interpreter",
+    title: "Interpreter",
     group: "Tooling",
-    description: "Core package architecture, public APIs, and runtime model.",
+    description: "Interpreter architecture, public APIs, and runtime model.",
     body: compilerInterpreter,
   },
   {
@@ -81,9 +81,9 @@ export const pages: DocPage[] = [
   },
   {
     id: "cli",
-    title: "Command Line",
+    title: "CLI",
     group: "Tooling",
-    description: "Run files and project directories with the sticks command.",
+    description: "Run .slite source files and project directories with the sticks CLI.",
     body: cli,
   },
   {

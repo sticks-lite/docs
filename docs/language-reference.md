@@ -1,6 +1,6 @@
 # Language Reference
 
-This reference describes Sticks Lite v1.0.13. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
+This reference describes Sticks Lite v1.0.14. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
 
 ## Design Principles
 
@@ -14,7 +14,8 @@ This reference describes Sticks Lite v1.0.13. Sticks Lite is small on purpose: e
 
 ## Files And Execution
 
-Sticks Lite files use `.slite`. The default entry file is `main.slite`.
+Sticks Lite source files use `.slite`. The default entry source file is
+`main.slite`.
 
 Programs execute from top to bottom. Function definitions are collected before top-level statements run, so functions may be called before they appear in the file.
 
@@ -386,7 +387,7 @@ foreach score in scores:
     say toText(score)
 ```
 
-Dictionary iteration is not supported in v1.0.13.
+Dictionary iteration is not supported in v1.0.14.
 
 Use `break` and `continue` inside loops.
 
@@ -518,7 +519,7 @@ when error:
 
 `when error:` catches every Sticks Lite error and should be last.
 
-Users cannot define, create, raise, or throw custom errors in v1.0.13.
+Users cannot define, create, raise, or throw custom errors in v1.0.14.
 
 ## Scope
 

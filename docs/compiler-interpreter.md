@@ -1,8 +1,8 @@
-# Compiler And Interpreter
+# Interpreter
 
-The Sticks Lite compiler/interpreter package contains the platform-independent
-language core. It can run in Node.js, browser IDEs, tests, and future classroom
-tools because the core does not read files, write files, or directly access
+The Sticks Lite interpreter package contains the platform-independent language
+core. It can run in Node.js, browser IDEs, tests, and future classroom tools
+because the core does not read files, write files, or directly access
 operating-system APIs.
 
 ## Package
@@ -11,11 +11,7 @@ Install the official package:
 
 ```sh
 npm install -g sticks-lite
-```
-
-Use the command:
-
-```sh
+sticks --version
 sticks main.slite
 ```
 
@@ -37,7 +33,7 @@ export contract.
 
 Sticks Lite uses a small, visible pipeline:
 
-1. Lex source text into tokens.
+1. Lex source file text into tokens.
 2. Parse tokens into an abstract syntax tree.
 3. Pre-scan function definitions.
 4. Execute top-level statements.
@@ -45,7 +41,7 @@ Sticks Lite uses a small, visible pipeline:
 
 This shape is intentionally teachable. Students can learn the difference
 between text, tokens, syntax, and runtime behavior without needing a large
-compiler theory background.
+language implementation background.
 
 ## Public APIs
 

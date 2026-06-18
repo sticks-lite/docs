@@ -2,7 +2,7 @@
 
 The `sticks-lite` package exposes a small TypeScript API for tools that need to
 embed the lexer, parser, or interpreter. These exports are covered by tests in
-the compiler/interpreter repository.
+the interpreter repository.
 
 ```ts
 import {
@@ -18,7 +18,7 @@ import {
 
 ## `lex(source)`
 
-`lex(source: string): Token[]` converts source text into tokens.
+`lex(source: string): Token[]` converts source file text into tokens.
 
 The lexer handles comments, strings, numbers, identifiers, keywords, operators,
 punctuation, indentation, dedentation, and block boundaries.
