@@ -12,7 +12,7 @@ import errors from "../docs/errors.md?raw";
 import diagnostics from "../docs/diagnostics.md?raw";
 import examples from "../docs/examples.md?raw";
 import implementation from "../docs/implementation.md?raw";
-import { STICKS_LITE_VERSION_LABEL } from "./version";
+import { STICKS_LITE_VERSION_LABEL, renderVersionPlaceholders } from "./version";
 
 export type DocPage = {
   id: string;
@@ -22,104 +22,108 @@ export type DocPage = {
   body: string;
 };
 
+function doc(markdown: string): string {
+  return renderVersionPlaceholders(markdown);
+}
+
 export const pages: DocPage[] = [
   {
     id: "overview",
     title: "Overview",
     group: "Start",
     description: "What Sticks Lite is and where to go first.",
-    body: index,
+    body: doc(index),
   },
   {
     id: "getting-started",
     title: "Getting Started",
     group: "Start",
     description: "Write and run your first Sticks Lite program.",
-    body: gettingStarted,
+    body: doc(gettingStarted),
   },
   {
     id: "installing",
     title: "Installing",
     group: "Start",
     description: "Install the CLI and verify the toolchain.",
-    body: installing,
+    body: doc(installing),
   },
   {
     id: "tutorial",
     title: "Tutorial",
     group: "Learn",
     description: "A classroom-friendly path through the language.",
-    body: tutorial,
+    body: doc(tutorial),
   },
   {
     id: "language-reference",
     title: "Language Reference",
     group: "Reference",
     description: `The complete Sticks Lite ${STICKS_LITE_VERSION_LABEL} syntax and behavior reference.`,
-    body: languageReference,
+    body: doc(languageReference),
   },
   {
     id: "standard-library",
     title: "Standard Library",
     group: "Reference",
     description: "Built-ins for text, numbers, data structures, and errors.",
-    body: standardLibrary,
+    body: doc(standardLibrary),
   },
   {
     id: "compiler-interpreter",
     title: "Interpreter",
     group: "Tooling",
     description: "Interpreter architecture, public APIs, and runtime model.",
-    body: compilerInterpreter,
+    body: doc(compilerInterpreter),
   },
   {
     id: "public-api",
     title: "Public API",
     group: "Tooling",
     description: "Documented TypeScript exports for tools and classroom integrations.",
-    body: publicApi,
+    body: doc(publicApi),
   },
   {
     id: "cli",
     title: "CLI",
     group: "Tooling",
     description: "Run .slite source files and project directories with the sticks CLI.",
-    body: cli,
+    body: doc(cli),
   },
   {
     id: "grammar",
     title: "Grammar",
     group: "Reference",
     description: "A compact grammar reference for parser work.",
-    body: grammar,
+    body: doc(grammar),
   },
   {
     id: "errors",
     title: "Errors",
     group: "Reference",
     description: "Friendly errors, hints, and classroom debugging guidance.",
-    body: errors,
+    body: doc(errors),
   },
   {
     id: "diagnostics",
     title: "Diagnostics",
     group: "Reference",
     description: "Modern error hints, CLI messages, and beginner mistake handling.",
-    body: diagnostics,
+    body: doc(diagnostics),
   },
   {
     id: "examples",
     title: "Examples",
     group: "Learn",
     description: "Small programs showing common patterns.",
-    body: examples,
+    body: doc(examples),
   },
   {
     id: "implementation",
     title: "Implementation Notes",
     group: "Tooling",
     description: "How the lexer, parser, and interpreter fit together.",
-    body: implementation,
+    body: doc(implementation),
   },
 ];
 

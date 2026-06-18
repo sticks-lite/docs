@@ -11,7 +11,7 @@ NameError at line 2, column 12: `score` does not exist yet.
 Hint: Create it first with `score = ...`, or check the spelling and capitalization.
 ```
 
-Hints are optional, but Sticks Lite v1.0.14 includes hints for many beginner
+Hints are optional, but Sticks Lite {{STICKS_LITE_VERSION_LABEL}} includes hints for many beginner
 mistakes in the lexer, parser, CLI wrapper, and interpreter.
 
 ## CLI Diagnostics
@@ -137,7 +137,7 @@ range when possible.
 
 Bad dictionary keys explain that dictionary indexes must be quoted text.
 
-Bad collection operations explain which value types work. In v1.0.14,
+Bad collection operations explain which value types work. In {{STICKS_LITE_VERSION_LABEL}},
 `foreach` supports lists and tuples only; dictionary iteration is unsupported.
 
 Bad type conversions explain which conversion is expected. For example,

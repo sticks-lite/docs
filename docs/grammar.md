@@ -87,7 +87,7 @@ new square(x):
     return x * x
 ```
 
-Only top-level function definitions are collected for v1.0.14.
+Only top-level function definitions are collected for {{STICKS_LITE_VERSION_LABEL}}.
 
 ## Protected Names
 
@@ -100,7 +100,7 @@ These cannot be assigned to:
 
 Protected names help beginner programs fail loudly instead of silently changing core behavior.
 
-Sticks Lite v1.0.14 locks these rules with tests for built-ins, error names,
+Sticks Lite {{STICKS_LITE_VERSION_LABEL}} locks these rules with tests for built-ins, error names,
 constants, functions, collection mutation, indexing, and function calls.
 
 ## Error Format
@@ -116,7 +116,7 @@ Hints are included when a likely beginner fix is clear.
 
 ## Stability Coverage
 
-Sticks Lite v1.0.14 adds regression coverage for:
+Sticks Lite {{STICKS_LITE_VERSION_LABEL}} adds regression coverage for:
 
 - `#` comments beside real code and near strings
 - `/* */` comments beside code, between tokens, and near strings

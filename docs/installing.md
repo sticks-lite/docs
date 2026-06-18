@@ -5,7 +5,7 @@ This page covers installing the Sticks Lite interpreter package and running the
 
 ## Requirements
 
-Sticks Lite v1.0.14 is distributed as a Node.js CLI package. Install a current
+Sticks Lite {{STICKS_LITE_VERSION_LABEL}} is distributed as a Node.js CLI package. Install a current
 long-term support version of Node.js, then use npm to install the global
 `sticks` CLI.
 

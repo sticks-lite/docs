@@ -1,6 +1,6 @@
 # Language Reference
 
-This reference describes Sticks Lite v1.0.14. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
+This reference describes Sticks Lite {{STICKS_LITE_VERSION_LABEL}}. Sticks Lite is small on purpose: every rule is meant to be teachable, predictable, and visible to a beginning programmer.
 
 ## Design Principles
 
@@ -387,7 +387,7 @@ foreach score in scores:
     say toText(score)
 ```
 
-Dictionary iteration is not supported in v1.0.14.
+Dictionary iteration is not supported in {{STICKS_LITE_VERSION_LABEL}}.
 
 Use `break` and `continue` inside loops.
 
@@ -519,7 +519,7 @@ when error:
 
 `when error:` catches every Sticks Lite error and should be last.
 
-Users cannot define, create, raise, or throw custom errors in v1.0.14.
+Users cannot define, create, raise, or throw custom errors in {{STICKS_LITE_VERSION_LABEL}}.
 
 ## Scope
 

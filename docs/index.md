@@ -1,6 +1,6 @@
 # Sticks Lite Documentation
 
-Sticks Lite v1.0.14 is a small educational programming language for monitored
+Sticks Lite {{STICKS_LITE_VERSION_LABEL}} is a small educational programming language for monitored
 classroom environments. It is designed to teach beginning computer-science
 concepts with readable syntax, friendly errors, and a compact interpreter that
 can run in a browser IDE or from the `sticks` CLI.
@@ -41,7 +41,7 @@ should install globally so the `sticks` command is available directly.
 - `Errors` documents error names and common mistakes.
 - `Diagnostics` documents modern hints and CLI error messages.
 
-Version `v1.0.14` specifically hardens comment handling and math semantics so
+Version `{{STICKS_LITE_VERSION_LABEL}}` specifically hardens comment handling and math semantics so
 future releases do not accidentally change classroom programs.
 
 ## Quick Example
@@ -71,4 +71,4 @@ Sticks Lite is not for production apps, security sandboxing, unsupervised execut
 
 ## Version
 
-The current language version is `v1.0.14`.
+The current language version is `{{STICKS_LITE_VERSION_LABEL}}`.
