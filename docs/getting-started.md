@@ -18,7 +18,8 @@ hello.slite
 loops.slite
 ```
 
-When a folder is run by the CLI, Sticks Lite looks for `main.slite` in that folder.
+When a folder is run by the CLI, Sticks Lite looks for an exact lowercase
+`main.slite` in that folder.
 
 ## Output
 

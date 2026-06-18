@@ -5,7 +5,7 @@ running the `sticks` command.
 
 ## Requirements
 
-Sticks Lite v1.0.8 is distributed as a Node.js command-line package. Install a
+Sticks Lite v1.0.11 is distributed as a Node.js command-line package. Install a
 current long-term support version of Node.js, then use npm to install the
 global CLI.
 
@@ -62,7 +62,8 @@ npm start
 ## Directory Projects
 
 When the CLI receives a directory, it looks for `main.slite` inside that
-directory.
+directory. The filename must be exactly lowercase `main.slite` so projects run
+the same way on Windows, macOS, and Linux.
 
 ```sh
 sticks ./student-project

@@ -18,10 +18,20 @@ sticks examples/hello.slite
 
 ## Run A Project Directory
 
-When given a directory, the CLI looks for `main.slite`.
+When given a directory, the CLI looks for an entry file named exactly
+`main.slite`.
 
 ```sh
 sticks path/to/sticks-project
+```
+
+The exact lowercase filename is required on every platform. This keeps
+directory execution consistent on Windows, macOS, and Linux.
+
+## Version Check
+
+```sh
+sticks --version
 ```
 
 ## Build
@@ -70,6 +80,9 @@ main.slite
 
 The web IDE runs one `main.slite` buffer. The CLI can run either a `.slite` file or a directory containing `main.slite`.
 
+`Main.slite`, `MAIN.SLITE`, and other differently cased names are rejected even
+on case-insensitive filesystems.
+
 ## Exit Behavior
 
 Successful programs exit with status code `0`. Programs that fail to parse or
@@ -83,10 +96,23 @@ The CLI checks common file mistakes before running a program:
 - files that do not end in `.slite`
 - empty directories
 - directories without `main.slite`
+- directories with differently cased entry files such as `Main.slite`
 - unreadable files or folders
 
 These are reported as `FileError` messages with a hint. The language core does
 not use Node.js file APIs; this validation lives in the CLI wrapper.
+
+Windows-style paths are handled in diagnostics, so a path such as
+`C:\Users\student\README.md` is displayed as `README.md` in extension errors.
+
+## Input, Output, And Newlines
+
+The CLI appends one space after non-empty prompts that do not already end in
+whitespace. Empty prompts stay empty.
+
+Program output is written in execution order. Each `say` statement writes one
+line ending with `\n`, regardless of whether the source file ends with a final
+newline.
 
 ## Classroom Usage
 

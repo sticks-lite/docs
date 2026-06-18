@@ -83,6 +83,13 @@ type RuntimeIO = {
 The `ask` expression calls `readInput`. The `say` statement calls
 `writeOutput`.
 
+`RuntimeIO` receives the prompt text exactly as the Sticks Lite program wrote
+it. Prompt spacing for terminal use is handled by the CLI wrapper, not the
+interpreter.
+
+`writeOutput` is called in execution order. `RunResult.output` records the same
+sequence of `say` values without adding newline characters.
+
 ## `RunResult`
 
 Successful runs return:
