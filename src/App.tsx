@@ -86,7 +86,7 @@ export default function App() {
           />
         </div>
         <nav className="toplinks" aria-label="External links">
-          <a href="https://github.com/brisqdev/sticks-lite/">GitHub</a>
+          <a href="https://github.com/sticks-lite/sticks-lite/">GitHub</a>
           <a href="https://www.npmjs.com/package/sticks-lite">npm</a>
         </nav>
       </header>

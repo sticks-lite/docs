@@ -1,6 +1,6 @@
 # Sticks Lite Documentation
 
-[![Main Repo](https://img.shields.io/badge/main%20repo-brisqdev%2Fsticks--lite-5cad4a.svg)](https://github.com/brisqdev/sticks-lite/)
+[![Main Repo](https://img.shields.io/badge/main%20repo-sticks-lite%2Fsticks--lite-5cad4a.svg)](https://github.com/sticks-lite/sticks-lite/)
 [![npm version](https://img.shields.io/npm/v/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
 [![npm downloads](https://img.shields.io/npm/dm/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
 [![Docs](https://img.shields.io/badge/docs-current-111111.svg)](#start)
@@ -105,7 +105,7 @@ npm run check
 
 ## Related Repositories
 
-- Main interpreter: [sticks-lite](https://github.com/brisqdev/sticks-lite/)
+- Main interpreter: [sticks-lite](https://github.com/sticks-lite/sticks-lite/)
 - npm package: [sticks-lite](https://www.npmjs.com/package/sticks-lite)
 - Browser IDE: `sandbox`
 - VS Code extension: `sticks-lite-vscode`

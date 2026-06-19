@@ -58,7 +58,7 @@ say toText(double(5))
 
 ## Project Links
 
-- Main project: [github.com/brisqdev/sticks-lite](https://github.com/brisqdev/sticks-lite/)
+- Main project: [github.com/sticks-lite/sticks-lite](https://github.com/sticks-lite/sticks-lite/)
 - Browser IDE repository: `sticks-lite-browser-ide`
 - Documentation repository: `sticks-lite-docs-site`
 - Interpreter repository: `sticks-lite-language`
