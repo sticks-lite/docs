@@ -1,6 +1,8 @@
-# Examples
+# Classroom Programs
 
-These examples are beginner-friendly programs for classroom use.
+These are beginner-friendly programs for classroom use. They replace the old
+package-level `examples/` directory; examples now live in the docs where they
+can be explained, copied, and tested alongside the language reference.
 
 ## Hello World
 
@@ -98,4 +100,40 @@ when ValueError:
     say "Please enter a number."
 when error:
     say "Something unexpected happened."
+```
+
+## Variables And Text
+
+```slite
+score = 0
+score += 10
+score++
+
+name = "Maya"
+say name + " scored " + toText(score)
+```
+
+## Loop Countdown
+
+```slite
+count = 3
+
+loopif count > 0:
+    say toText(count)
+    count--
+
+repeat 2 times:
+    say "Done"
+```
+
+## List Editing
+
+```slite
+items = [1, 2, 3]
+push(items, 4)
+insert(items, 0, 0)
+remove(items, 2)
+
+foreach item in items:
+    say toText(item)
 ```

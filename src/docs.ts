@@ -1,17 +1,17 @@
-import index from "../docs/index.md?raw";
-import gettingStarted from "../docs/getting-started.md?raw";
-import installing from "../docs/installing.md?raw";
-import tutorial from "../docs/tutorial.md?raw";
-import languageReference from "../docs/language-reference.md?raw";
-import standardLibrary from "../docs/standard-library.md?raw";
-import compilerInterpreter from "../docs/compiler-interpreter.md?raw";
-import publicApi from "../docs/public-api.md?raw";
-import cli from "../docs/cli.md?raw";
-import grammar from "../docs/grammar.md?raw";
-import errors from "../docs/errors.md?raw";
-import diagnostics from "../docs/diagnostics.md?raw";
-import examples from "../docs/examples.md?raw";
-import implementation from "../docs/implementation.md?raw";
+import home from "../pages/home.mdx?raw";
+import gettingStarted from "../docs/getting-started.mdx?raw";
+import installing from "../docs/installing.mdx?raw";
+import basics from "../learn/basics.mdx?raw";
+import classroomPrograms from "../learn/classroom-programs.mdx?raw";
+import languageReference from "../reference/language-reference.mdx?raw";
+import standardLibrary from "../reference/standard-library.mdx?raw";
+import compilerInterpreter from "../docs/compiler-interpreter.mdx?raw";
+import publicApi from "../docs/public-api.mdx?raw";
+import cli from "../docs/cli.mdx?raw";
+import grammar from "../reference/grammar.mdx?raw";
+import errors from "../reference/errors.mdx?raw";
+import diagnostics from "../reference/diagnostics.mdx?raw";
+import implementation from "../internals/implementation.mdx?raw";
 import { STICKS_LITE_VERSION_LABEL, renderVersionPlaceholders } from "./version";
 
 export type DocPage = {
@@ -30,30 +30,37 @@ export const pages: DocPage[] = [
   {
     id: "overview",
     title: "Overview",
-    group: "Start",
+    group: "Home",
     description: "What Sticks Lite is and where to go first.",
-    body: doc(index),
+    body: doc(home),
   },
   {
     id: "getting-started",
     title: "Getting Started",
-    group: "Start",
+    group: "Docs",
     description: "Write and run your first Sticks Lite program.",
     body: doc(gettingStarted),
   },
   {
     id: "installing",
     title: "Installing",
-    group: "Start",
+    group: "Docs",
     description: "Install the CLI and verify the toolchain.",
     body: doc(installing),
   },
   {
-    id: "tutorial",
-    title: "Tutorial",
+    id: "learn-basics",
+    title: "Learn the Basics",
     group: "Learn",
     description: "A classroom-friendly path through the language.",
-    body: doc(tutorial),
+    body: doc(basics),
+  },
+  {
+    id: "classroom-programs",
+    title: "Classroom Programs",
+    group: "Learn",
+    description: "Complete runnable programs migrated from the package examples.",
+    body: doc(classroomPrograms),
   },
   {
     id: "language-reference",
@@ -72,21 +79,21 @@ export const pages: DocPage[] = [
   {
     id: "compiler-interpreter",
     title: "Interpreter",
-    group: "Tooling",
+    group: "Docs",
     description: "Interpreter architecture, public APIs, and runtime model.",
     body: doc(compilerInterpreter),
   },
   {
     id: "public-api",
     title: "Public API",
-    group: "Tooling",
+    group: "Docs",
     description: "Documented TypeScript exports for tools and classroom integrations.",
     body: doc(publicApi),
   },
   {
     id: "cli",
     title: "CLI",
-    group: "Tooling",
+    group: "Docs",
     description: "Run .slite source files and project directories with the sticks CLI.",
     body: doc(cli),
   },
@@ -112,16 +119,9 @@ export const pages: DocPage[] = [
     body: doc(diagnostics),
   },
   {
-    id: "examples",
-    title: "Examples",
-    group: "Learn",
-    description: "Small programs showing common patterns.",
-    body: doc(examples),
-  },
-  {
     id: "implementation",
     title: "Implementation Notes",
-    group: "Tooling",
+    group: "Internals",
     description: "How the lexer, parser, and interpreter fit together.",
     body: doc(implementation),
   },

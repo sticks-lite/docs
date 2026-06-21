@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { type MouseEvent, useMemo, useState } from "react";
 import { BookOpen, ChevronRight, Code2, Search } from "lucide-react";
 import { marked } from "marked";
 import { groupedPages, pages } from "./docs";
@@ -30,13 +30,16 @@ function extractToc(markdown: string) {
 
 function renderMarkdown(markdown: string): string {
   const renderer = new marked.Renderer();
+  let codeIndex = 0;
   renderer.heading = ({ text, depth }) => {
     const id = slugify(text);
     return `<h${depth} id="${id}">${text}</h${depth}>`;
   };
   renderer.code = ({ text, lang }) => {
+    const id = `code-${codeIndex}`;
+    codeIndex += 1;
     const label = lang ? `<span>${lang}</span>` : "";
-    return `<div class="code-frame"><div class="code-toolbar">${label}</div><pre><code class="language-${lang ?? "text"}">${text
+    return `<div class="code-frame"><div class="code-toolbar">${label}<button class="copy-code" type="button" data-copy-target="${id}">Copy</button></div><pre><code id="${id}" class="language-${lang ?? "text"}">${text
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")}</code></pre></div>`;
@@ -68,6 +71,24 @@ export default function App() {
         return acc;
       }, {});
   }, [query]);
+
+  async function copyFromArticle(event: MouseEvent<HTMLElement>) {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const button = target.closest<HTMLButtonElement>(".copy-code");
+    if (!button) return;
+
+    const codeId = button.dataset.copyTarget;
+    const code = codeId ? document.getElementById(codeId)?.textContent : null;
+    if (!code) return;
+
+    const copied = await writeClipboardText(code);
+    const previous = button.textContent;
+    button.textContent = copied ? "Copied" : "Select";
+    window.setTimeout(() => {
+      button.textContent = previous ?? "Copy";
+    }, 1200);
+  }
 
   return (
     <div className="docs-shell">
@@ -122,6 +143,11 @@ export default function App() {
             <span className="eyebrow">{activePage.group}</span>
             <h1>{activePage.title}</h1>
             <p>{activePage.description}</p>
+            <div className="hero-badges" aria-label="Documentation status">
+              <span>{STICKS_LITE_VERSION_LABEL}</span>
+              <span>MDX docs</span>
+              <span>Classroom-safe guidance</span>
+            </div>
           </div>
           <div className="install-card">
             <Code2 size={17} />
@@ -134,6 +160,7 @@ export default function App() {
         </div>
         <article
           className="markdown"
+          onClick={copyFromArticle}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </main>
@@ -152,4 +179,22 @@ export default function App() {
       </aside>
     </div>
   );
+}
+
+async function writeClipboardText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    return copied;
+  }
 }

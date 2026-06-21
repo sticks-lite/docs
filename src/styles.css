@@ -216,6 +216,23 @@ a {
   line-height: 1.55;
 }
 
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.hero-badges span {
+  border: 1px solid #d2e4cd;
+  background: #f3f8f1;
+  color: #31552b;
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 720;
+}
+
 .install-card {
   display: flex;
   align-items: flex-start;
@@ -244,6 +261,64 @@ a {
   padding-top: 30px;
   font-size: 16px;
   line-height: 1.72;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 8px 0 34px;
+}
+
+.home-card {
+  border: 1px solid #dbe8d7;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 12px 26px rgba(35, 58, 31, 0.06);
+}
+
+.home-card.accent {
+  background: #f1f8ee;
+  border-color: #cce4c5;
+}
+
+.home-card span {
+  display: block;
+  color: #4a7a40;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.home-card h2 {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.home-card p {
+  margin: 0;
+  color: #4b5948;
+  line-height: 1.55;
+}
+
+.home-card pre {
+  margin: 14px 0 0;
+  border-radius: 8px;
+  background: #121812;
+  color: #e8f0e6;
+  overflow: auto;
+  padding: 13px;
+}
+
+.home-card code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .markdown h1 {
@@ -319,6 +394,8 @@ a {
   min-height: 34px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 0 14px;
   color: #8ea08a;
   background: #171e17;
@@ -326,6 +403,24 @@ a {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.copy-code {
+  border: 1px solid #334033;
+  border-radius: 6px;
+  background: #202a20;
+  color: #d9e8d5;
+  font: inherit;
+  font-size: 11px;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.copy-code:hover {
+  background: #2b382a;
+  border-color: #54704f;
 }
 
 .code-frame pre {
@@ -416,16 +511,33 @@ a {
   .sidebar {
     position: static;
     height: auto;
+    max-height: 300px;
+    overflow: auto;
     border-right: 0;
     border-bottom: 1px solid #dfe9dd;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 12px;
     padding: 14px;
   }
 
   .side-intro {
     grid-column: 1 / -1;
+    margin-bottom: 4px;
+    padding: 8px 10px 12px;
+  }
+
+  .nav-group {
+    margin-bottom: 6px;
+  }
+
+  .nav-group h2 {
+    margin-bottom: 5px;
+  }
+
+  .nav-group button {
+    min-height: 34px;
+    padding: 7px 9px;
   }
 
   .content {
@@ -438,5 +550,22 @@ a {
 
   .install-card {
     white-space: normal;
+  }
+
+  .install-card code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .markdown {
+    font-size: 15px;
+  }
+
+  .markdown h2 {
+    font-size: 24px;
   }
 }
