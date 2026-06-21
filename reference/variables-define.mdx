@@ -1,0 +1,78 @@
+# Variables and DEFINE
+
+Variables store values. `DEFINE` creates top-level constants.
+
+## Names
+
+Identifiers may contain letters, digits, and underscores. They may not start
+with a digit.
+
+```slite
+score = 10
+player_score = 20
+playerScore = 30
+```
+
+Names are case-sensitive. `score` and `Score` are different names.
+
+## Assignment
+
+```slite
+score = 0
+score = score + 1
+say toText(score)
+```
+
+Expected output:
+
+```txt
+1
+```
+
+Assignment creates a variable or updates an existing variable.
+
+## Constants
+
+```slite
+DEFINE MAX_SCORE = 100
+say toText(MAX_SCORE)
+```
+
+Expected output:
+
+```txt
+100
+```
+
+Constants can only be defined at the top level. They cannot be redefined or
+assigned later.
+
+## Protected names
+
+The following names cannot be overwritten:
+
+- built-in function names such as `toText`, `random`, and `length`
+- built-in error names such as `ValueError` and `TypeError`
+- existing function names
+- constants created with `DEFINE`
+
+## Scope
+
+Functions have local scope for parameters and local variables. Blocks such as
+`if`, `repeat`, `loopif`, `foreach`, and `attempt` do not create a new variable
+scope.
+
+```slite
+new addOne(value):
+    result = value + 1
+    return result
+
+say toText(addOne(4))
+```
+
+Expected output:
+
+```txt
+5
+```
+

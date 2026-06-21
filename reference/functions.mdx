@@ -1,0 +1,84 @@
+# Functions
+
+Functions are defined with `new`.
+
+## Definition forms
+
+Function with parameters:
+
+```slite
+new add(left, right):
+    return left + right
+
+say toText(add(2, 3))
+```
+
+Expected output:
+
+```txt
+5
+```
+
+Function without parameters:
+
+```slite
+new greet:
+    return "Hello"
+
+say greet()
+```
+
+Expected output:
+
+```txt
+Hello
+```
+
+No-parameter definitions omit parentheses. Calls use parentheses.
+
+## Call-before-definition
+
+Function definitions are collected before top-level code runs.
+
+```slite
+say toText(double(5))
+
+new double(value):
+    return value * 2
+```
+
+Expected output:
+
+```txt
+10
+```
+
+## Return values
+
+`return` exits the current function. A function that finishes without `return`
+returns `null`.
+
+```slite
+new noValue:
+    say "ran"
+
+say toText(noValue())
+```
+
+Expected output:
+
+```txt
+ran
+null
+```
+
+## Wrong parameter count behavior
+
+Calling a user function with the wrong number of arguments reports an
+`ArgumentError`. The hint shows the expected call shape.
+
+## Name rules
+
+Function names cannot use protected built-in names, protected error names,
+constant names, or another function's name.
+

@@ -1,0 +1,85 @@
+# Collections
+
+Collections hold several values.
+
+## Lists
+
+Lists use square brackets and can change.
+
+```slite
+scores = [90, 85, 100]
+push(scores, 95)
+scores[0] = 92
+say toText(scores)
+```
+
+Expected output:
+
+```txt
+[92, 85, 100, 95]
+```
+
+Indexes start at `0`.
+
+## Tuples
+
+Tuples use parentheses with at least two values. Tuples cannot change.
+
+```slite
+point = (10, 20)
+say toText(point[0])
+```
+
+Expected output:
+
+```txt
+10
+```
+
+## Dictionaries
+
+Dictionaries use quoted text keys.
+
+```slite
+profile = {"name": "Maya", "age": 13}
+profile["city"] = "Ridgewood"
+
+say profile["name"]
+say toText(profile["age"])
+```
+
+Expected output:
+
+```txt
+Maya
+13
+```
+
+## Text indexing
+
+Text can be indexed too.
+
+```slite
+word = "code"
+say word[0]
+```
+
+Expected output:
+
+```txt
+c
+```
+
+## Common mistakes
+
+| Mistake | What happens |
+| --- | --- |
+| `items["zero"]` on a list | List indexes must be whole numbers. |
+| `point[0] = 5` on a tuple | Tuples cannot be changed. |
+| `{name: "Maya"}` | Dictionary keys must be quoted text. |
+| `person["age"]` before assigning it | Sticks Lite reports a `KeyError`. |
+
+## Deeper reference
+
+Read Lists, Tuples, and Dictionaries and Standard Library.
+

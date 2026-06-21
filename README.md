@@ -1,29 +1,12 @@
 # Sticks Lite Documentation
 
-[![Main Repo](https://img.shields.io/badge/main%20repo-sticks-lite%2Fsticks--lite-5cad4a.svg)](https://github.com/sticks-lite/sticks-lite/)
-[![npm version](https://img.shields.io/npm/v/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
-[![npm downloads](https://img.shields.io/npm/dm/sticks-lite.svg)](https://www.npmjs.com/package/sticks-lite)
-[![Docs](https://img.shields.io/badge/docs-current-111111.svg)](#start)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+This directory contains the official Sticks Lite documentation site.
 
-This repository contains the official documentation site for Sticks Lite.
+Sticks Lite is an educational programming language for monitored classroom
+environments. The site is organized as a language homepage plus Learn,
+Reference, Tools, and Classroom documentation.
 
-Sticks Lite is an educational programming language developed by Kabir Sekhon
-for monitored classroom environments. The docs explain installation, the
-`sticks` CLI, language syntax, built-ins, classroom programs, public API, and
-friendly errors.
-
-## Who this is for
-
-- Teachers and mentors introducing programming in a supervised classroom.
-- Students learning variables, conditionals, loops, functions, collections, and errors.
-- Clubs, camps, and beginner computer-science lessons that need a small `.slite`
-  language and the `sticks` CLI.
-
-Sticks Lite is intentionally small. It is not intended for production software
-or unsupervised execution of untrusted source files.
-
-## Start
+## Develop
 
 Install dependencies:
 
@@ -31,88 +14,69 @@ Install dependencies:
 npm install
 ```
 
-Start the docs site:
+Start the local site:
 
 ```sh
 npm run dev
 ```
 
-Vite will print a local URL, usually:
-
-```txt
-http://localhost:5173/
-```
-
-## Build
-
-Build the production site:
+Build:
 
 ```sh
 npm run build
 ```
 
-Preview the production build:
-
-```sh
-npm run preview
-```
-
-Run the full docs check:
+Run the docs check:
 
 ```sh
 npm run check
 ```
-
-## Sticks Lite Installation
-
-The Sticks Lite interpreter package is distributed through npm:
-
-```sh
-npm install -g sticks-lite
-sticks --version
-sticks main.slite
-```
-
-npm may display `npm i sticks-lite` on the package page, but Sticks Lite users should install globally so the `sticks` command is available directly.
 
 ## Documentation Structure
 
-Documentation source is organized as a small language documentation site:
-
-- `pages/` contains site-level pages such as the homepage.
-- `learn/` contains the beginner path and classroom programs.
-- `docs/` contains installation, CLI, interpreter, and public API guides.
-- `reference/` contains the language reference, standard library, and errors.
-- `src/` contains the React site shell, navigation registry, version helpers, and styles.
+- `pages/` contains site-level content used by the homepage and search.
+- `learn/` contains guided beginner lessons and classroom practice programs.
+- `reference/` contains formal language, CLI, built-in, error, and API reference pages.
+- `tools/` contains installation, CLI, embedding, runtime I/O, and versioning guides.
+- `classroom/` contains short teacher-facing guidance.
+- `src/` contains the React shell, navigation registry, version helper, and styles.
 
 Navigation metadata is defined in `src/docs.ts`.
 
-## Editing Docs
+## Sticks Lite Installation
 
-1. Edit the page in `pages/`, `learn/`, `docs/`, or `reference/`.
-2. If adding a new page, register it in `src/docs.ts`.
-3. Run:
+The public package install command is:
 
 ```sh
-npm run check
+npm install -g sticks-lite
 ```
 
-4. Open the local docs site and verify the homepage cards, sidebar, page title,
-   table of contents, copy-code buttons, and code examples.
+Run a source file:
 
-## Related Repositories
+```sh
+sticks main.slite
+```
 
-- Main interpreter: [sticks-lite](https://github.com/sticks-lite/sticks-lite/)
-- npm package: [sticks-lite](https://www.npmjs.com/package/sticks-lite)
-- Browser IDE: `sandbox`
-- VS Code extension: `sticks-lite-vscode`
+Run a folder containing `main.slite`:
+
+```sh
+sticks .
+```
+
+## Editing Docs
+
+1. Edit or add a page in the matching section folder.
+2. Register new pages in `src/docs.ts`.
+3. Use `slite` fences only for examples that should run successfully.
+4. Run `npm run build`.
+5. Open the local site and check the homepage, sidebar, code copy buttons, and mobile layout.
 
 ## Responsible Use
 
-Use Sticks Lite in supervised learning settings. A teacher, mentor, or parent should review what students run and decide whether each lesson is appropriate.
-
-Sticks Lite is not for production apps, security sandboxing, unsupervised execution of untrusted source files, or safety-critical work.
+Use Sticks Lite in supervised learning settings. A teacher, mentor, or parent
+should review lesson files and decide whether each lesson is appropriate.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE).
+MIT License. See `LICENSE`.
+

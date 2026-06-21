@@ -1,0 +1,49 @@
+# Runtime I/O
+
+`RuntimeIO` connects the interpreter to the host environment.
+
+## Shape
+
+```ts
+type RuntimeIO = {
+  readInput(prompt: string): string | Promise<string>;
+  writeOutput(text: string): void;
+};
+```
+
+The language core does not read files, use the network, or write directly to a
+terminal. It asks the host to provide input and receive output.
+
+## `ask`
+
+```slite
+name = ask "Name?"
+```
+
+`ask` evaluates its prompt as text, then calls `readInput(prompt)`.
+
+## `say`
+
+```slite
+say "Hello"
+```
+
+`say` evaluates its expression, converts the value to text, and calls
+`writeOutput(text)`.
+
+## Default behavior
+
+If `runSource` is called without `io`, `ask` receives an empty string and
+output is collected in the returned `RunResult.output` array.
+
+```ts
+const result = await runSource('say "Hello"\n');
+// result.output is ["Hello"]
+```
+
+## Boundaries
+
+The CLI is responsible for reading `.slite` files, resolving `main.slite`, and
+using terminal input/output. The interpreter receives source text and
+`RuntimeIO`.
+

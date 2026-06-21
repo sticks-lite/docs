@@ -1,0 +1,37 @@
+# Versioning
+
+Sticks Lite package versions use npm package metadata.
+
+## Current docs version
+
+These docs are for Sticks Lite {{STICKS_LITE_VERSION_LABEL}}.
+
+## Check the CLI version
+
+```sh
+sticks --version
+```
+
+The CLI prints the version from the installed `sticks-lite` package.
+
+## Update the global package
+
+```sh
+npm update -g sticks-lite
+```
+
+## Classroom update practice
+
+For a classroom, update one machine first, run lesson files, then update the
+rest of the environment.
+
+## Compatibility notes
+
+Sticks Lite v1 documents these important boundaries:
+
+- `foreach` supports lists and tuples only.
+- Dictionary iteration is unsupported.
+- The CLI runs `.slite` files and folders containing `main.slite`.
+- The public TypeScript API includes `lex`, `parse`, `runSource`, `RuntimeIO`,
+  `RunResult`, and `SticksLiteError`.
+

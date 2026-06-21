@@ -1,0 +1,108 @@
+# Public TypeScript API
+
+The `sticks-lite` package exports a small API for tools, tests, browser IDEs,
+and classroom integrations.
+
+## Imports
+
+```ts
+import {
+  SticksLiteError,
+  isSticksLiteError,
+  lex,
+  parse,
+  runSource,
+  type Program,
+  type RunResult,
+  type RuntimeIO,
+  type Token,
+} from "sticks-lite";
+```
+
+## `lex(source: string): Token[]`
+
+Converts source text into positioned tokens.
+
+```ts
+const tokens = lex('say "Hello"');
+```
+
+Tokens include `type`, `lexeme`, optional `literal`, `line`, and `column`.
+
+## `parse(source: string): Program`
+
+Parses source text into a program AST.
+
+```ts
+const program = parse('say "Hello"\n');
+```
+
+Parser errors throw `SticksLiteError`.
+
+## `runSource(source: string, io?: RuntimeIO): Promise<RunResult>`
+
+Runs a complete program.
+
+```ts
+const output: string[] = [];
+
+const result = await runSource('say "Hello"\n', {
+  readInput(prompt) {
+    return "";
+  },
+  writeOutput(text) {
+    output.push(text);
+  },
+});
+```
+
+Language errors are returned in a failed `RunResult` instead of thrown.
+Unexpected host errors can still throw.
+
+## `RuntimeIO`
+
+```ts
+type RuntimeIO = {
+  readInput(prompt: string): string | Promise<string>;
+  writeOutput(text: string): void;
+};
+```
+
+`ask` calls `readInput`. `say` calls `writeOutput`.
+
+## `RunResult`
+
+```ts
+type RunResult = {
+  ok: boolean;
+  output: string[];
+  error?: string;
+};
+```
+
+`output` contains every value written by `say`, even when the caller also
+provides `writeOutput`.
+
+## `SticksLiteError`
+
+```ts
+const error = new SticksLiteError(
+  "SyntaxError",
+  "Missing colon.",
+  2,
+  8,
+  "Put `:` at the end of the block-opening line.",
+);
+```
+
+Properties:
+
+| Property | Meaning |
+| --- | --- |
+| `name` | Sticks Lite error name. |
+| `message` | Human-readable error text. |
+| `line` | 1-based line number. |
+| `column` | 1-based column number. |
+| `hint` | Optional recovery hint. |
+| `format()` | Formatted message with location and hint. |
+

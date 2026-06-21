@@ -1,0 +1,83 @@
+# Loops
+
+Sticks Lite has counted loops, conditional loops, and collection loops.
+
+## repeat
+
+```slite
+repeat 3 times:
+    say "Practice"
+```
+
+Expected output:
+
+```txt
+Practice
+Practice
+Practice
+```
+
+The count must be a whole number and cannot be negative.
+
+## loopif
+
+```slite
+count = 3
+
+loopif count > 0:
+    say toText(count)
+    count--
+```
+
+Expected output:
+
+```txt
+3
+2
+1
+```
+
+The condition must be boolean.
+
+## foreach
+
+```slite
+letters = ("a", "b", "c")
+
+foreach letter in letters:
+    say letter
+```
+
+Expected output:
+
+```txt
+a
+b
+c
+```
+
+`foreach` supports lists and tuples only. Dictionary iteration is unsupported in
+Sticks Lite {{STICKS_LITE_VERSION_LABEL}}.
+
+## break and continue
+
+```slite
+items = [1, 2, 3, 4]
+
+foreach item in items:
+    if item == 2:
+        continue
+    if item == 4:
+        break
+    say toText(item)
+```
+
+Expected output:
+
+```txt
+1
+3
+```
+
+`break` and `continue` are valid only inside `repeat`, `loopif`, or `foreach`.
+

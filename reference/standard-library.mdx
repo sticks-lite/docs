@@ -1,4 +1,4 @@
-# Standard Library
+# Standard Library / Built-ins
 
 Built-ins are always available. Their names are protected and cannot be used as
 variables, constants, or function names.
@@ -33,12 +33,27 @@ score = 42
 say "Score: " + toText(score)
 ```
 
+Expected output:
+
+```txt
+Score: 42
+```
+
 ```slite
 age = toNumber("13")
 say toText(age + 1)
 ```
 
-## Type Checks
+Expected output:
+
+```txt
+14
+```
+
+`toNumber(...)` accepts numbers and numeric text. Non-numeric text reports a
+`ValueError`.
+
+## Type checks
 
 ```slite
 say toText(isNumber(42))
@@ -50,6 +65,18 @@ say toText(isBoolean(True))
 say toText(isNull(null))
 ```
 
+Expected output:
+
+```txt
+True
+True
+True
+True
+True
+True
+True
+```
+
 ## Collections
 
 ```slite
@@ -57,6 +84,15 @@ say toText(length("hello"))
 say toText(length([1, 2, 3]))
 say toText(length((1, 2)))
 say toText(length({"name": "Maya"}))
+```
+
+Expected output:
+
+```txt
+5
+3
+2
+1
 ```
 
 ```slite
@@ -67,23 +103,39 @@ remove(items, 2)
 say toText(items)
 ```
 
+Expected output:
+
+```txt
+[0, 1, 3]
+```
+
+`push`, `insert`, and `remove` work on lists only.
+
 ## Math
 
 ```slite
-say toText(random(1, 6))
+say toText(random(4, 4))
 say toText(round(3.6))
 say toText(floor(3.9))
 say toText(ceiling(3.1))
 say toText(absolute(-5))
 ```
 
-## Errors
+Expected output:
 
-Built-ins report ordinary Sticks Lite errors:
+```txt
+4
+4
+3
+4
+5
+```
 
-| Error | Common cause |
-| --- | --- |
-| `ArgumentError` | Wrong number of arguments. |
-| `TypeError` | Wrong value type. |
-| `ValueError` | Invalid value, such as `toNumber("abc")`. |
-| `IndexError` | List index is outside the valid range. |
+`random(min, max)` returns a whole number when both arguments are whole numbers.
+It reports a `ValueError` when `min` is greater than `max`.
+
+## Argument errors
+
+Every built-in checks its argument count. Passing too few or too many arguments
+reports an `ArgumentError` with an example call.
+

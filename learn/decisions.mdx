@@ -1,0 +1,57 @@
+# Decisions with if, orif, otherwise
+
+Decision blocks choose which statements run.
+
+## Compare a value
+
+```slite
+score = 87
+
+if score >= 90:
+    say "A"
+orif score >= 80:
+    say "B"
+otherwise:
+    say "Keep practicing"
+```
+
+Expected output:
+
+```txt
+B
+```
+
+Blocks start with `:` and the body is indented.
+
+## Conditions must be boolean
+
+Conditions must produce `True` or `False`.
+
+```slite
+score = 3
+
+if score > 0:
+    say "Positive"
+```
+
+Expected output:
+
+```txt
+Positive
+```
+
+Use an explicit comparison. A raw number or text value is not a condition.
+
+## Common mistakes
+
+| Mistake | What to change |
+| --- | --- |
+| Missing `:` after `if` | Add `:` and put the block on the next line. |
+| `if 1:` | Write a comparison such as `if score > 0:`. |
+| `orif` without an `if` | Start the chain with `if`. |
+| `otherwise` before `orif` | Put every `orif` before `otherwise:`. |
+
+## Deeper reference
+
+Read Conditionals and Operators.
+

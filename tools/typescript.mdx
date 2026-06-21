@@ -1,0 +1,53 @@
+# Using Sticks Lite from TypeScript
+
+Use the public API when building editor tools, tests, browser classrooms, or
+other supervised learning integrations.
+
+## Install
+
+```sh
+npm install sticks-lite
+```
+
+Use a local dependency for embedding. Use the global install when students need
+the `sticks` CLI.
+
+## Run source
+
+```ts
+import { runSource, type RuntimeIO } from "sticks-lite";
+
+const events: string[] = [];
+
+const io: RuntimeIO = {
+  readInput(prompt) {
+    events.push(`prompt:${prompt}`);
+    return "Maya";
+  },
+  writeOutput(text) {
+    events.push(`output:${text}`);
+  },
+};
+
+const result = await runSource('name = ask "Name?"\nsay name\n', io);
+```
+
+`result.ok` is `true` when the program finishes. If a Sticks Lite language
+error occurs, `result.ok` is `false` and `result.error` contains the formatted
+message.
+
+## Lex and parse
+
+```ts
+import { lex, parse } from "sticks-lite";
+
+const tokens = lex('say "Hello"\n');
+const program = parse('say "Hello"\n');
+```
+
+`lex` and `parse` throw `SticksLiteError` for invalid source.
+
+## Supported exports
+
+See Public TypeScript API for the complete export list.
+

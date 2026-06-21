@@ -1,0 +1,53 @@
+# CLI Reference
+
+The `sticks` command runs `.slite` source files and folders that contain
+`main.slite`.
+
+## Commands
+
+```sh
+sticks --version
+sticks main.slite
+sticks .
+sticks path/to/project
+```
+
+With no argument, the CLI uses `main.slite` in the current directory.
+
+## File rules
+
+| Input | Behavior |
+| --- | --- |
+| `.slite` file | Reads and runs that file. |
+| folder | Looks for an exactly named `main.slite`. |
+| no argument | Same as `sticks main.slite`. |
+| `--version` or `-v` | Prints the package version. |
+
+The `.slite` extension check is case-insensitive for direct file paths. Folder
+entry files must be named exactly `main.slite` so projects behave consistently
+across operating systems.
+
+## Input and output
+
+`say` writes one line to standard output. `ask` writes the prompt and reads from
+standard input. A prompt that does not already end in whitespace gets one space
+added by the CLI.
+
+## Exit codes
+
+| Result | Exit code |
+| --- | --- |
+| Program finished successfully | `0` |
+| Language error or file error | `1` |
+
+## CLI file errors
+
+| Situation | Message type | Fix |
+| --- | --- | --- |
+| Missing file | `FileError` | Check the path or run from a folder with `main.slite`. |
+| Wrong extension | `FileError` | Rename the source file to end in `.slite`. |
+| Empty directory | `FileError` | Add `main.slite` or pass a specific `.slite` file. |
+| Directory missing `main.slite` | `FileError` | Create `main.slite` in that folder. |
+| Differently cased entry file | `FileError` | Rename it exactly to `main.slite`. |
+| Unreadable path | `FileError` | Check permissions and use a readable folder. |
+

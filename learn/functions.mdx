@@ -1,0 +1,87 @@
+# Functions
+
+Functions name reusable work.
+
+## Define and call a function
+
+```slite
+new square(x):
+    return x * x
+
+say toText(square(5))
+```
+
+Expected output:
+
+```txt
+25
+```
+
+Function definitions use `new`. Parameters go in parentheses when the function
+has parameters.
+
+## Call before definition
+
+Sticks Lite collects function definitions before top-level statements run.
+
+```slite
+say toText(double(6))
+
+new double(value):
+    return value * 2
+```
+
+Expected output:
+
+```txt
+12
+```
+
+## No-parameter functions
+
+No-parameter function definitions omit parentheses. Calls still use
+parentheses.
+
+```slite
+new greet:
+    say "Hello"
+
+greet()
+```
+
+Expected output:
+
+```txt
+Hello
+```
+
+## Nested calls
+
+Function calls can be nested inside other calls.
+
+```slite
+new add(left, right):
+    return left + right
+
+say toText(add(add(1, 2), 3))
+```
+
+Expected output:
+
+```txt
+6
+```
+
+## Common mistakes
+
+| Mistake | What happens |
+| --- | --- |
+| Calling with too few or too many arguments | Sticks Lite reports an `ArgumentError`. |
+| Defining the same function twice | Sticks Lite reports a `FunctionError`. |
+| Naming a function `toText` | Built-in names are protected. |
+| Using `return` outside a function | Sticks Lite reports a `RuntimeError`. |
+
+## Deeper reference
+
+Read Functions and Errors.
+
