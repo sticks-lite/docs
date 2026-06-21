@@ -1,78 +1,67 @@
-# Getting Started
+# Quick Start
 
-Sticks Lite is a small text-based programming language for teaching basic computer-science concepts in monitored educational environments. It uses `.slite` source files, clear command-style syntax, and Python-inspired indentation.
+This page gets you from an empty folder to a running Sticks Lite program.
 
-The default entry file is `main.slite`. A program runs from top to bottom, and no `main` function is required.
+## 1. Install the CLI
+
+```sh
+npm install -g sticks-lite
+```
+
+Check that the command is available:
+
+```sh
+sticks --version
+```
+
+## 2. Create `main.slite`
 
 ```slite
 say "Hello, world!"
 ```
 
-## Files
+## 3. Run it
 
-Use the `.slite` extension for Sticks Lite source files.
+```sh
+sticks main.slite
+```
+
+You should see:
 
 ```txt
-main.slite
-hello.slite
-loops.slite
+Hello, world!
 ```
 
-When a folder is run by the `sticks` CLI, Sticks Lite looks for an exact
-lowercase `main.slite` source file in that folder.
+## 4. Add input
 
-## Output
-
-Use `say` to print one value.
-
-```slite
-say "Hello"
-say toText(42)
-```
-
-`say` does not use parentheses.
-
-## Input
-
-Use `ask` inside an expression. It returns text.
-
-```slite
-name = ask "What is your name?"
-say "Hello " + name
-```
-
-`ask` prompts must be text. Convert input with `toNumber` when you need a number.
-
-```slite
-ageText = ask "Age?"
-age = toNumber(ageText)
-say "Next year: " + toText(age + 1)
-```
-
-## Variables
-
-Create variables with assignment.
-
-```slite
-score = 0
-score += 10
-score++
-say toText(score)
-```
-
-Sticks Lite does not convert values automatically. Use `toText` when combining text and numbers.
-
-## A First Program
+`ask` reads text. Use `toNumber` when the answer should be used in math.
 
 ```slite
 name = ask "Name?"
-score = 0
-score += 10
+age = toNumber(ask "Age?")
 
-if score >= 10:
-    say "Nice work, " + name
+say "Hello " + name
+say "Next year: " + toText(age + 1)
+```
+
+## 5. Add a decision
+
+Blocks start with `:` and use indentation.
+
+```slite
+score = 87
+
+if score >= 90:
+    say "A"
+orif score >= 80:
+    say "B"
 otherwise:
     say "Keep practicing"
 ```
 
-More complete programs are in `Learn the Basics` and `Classroom Programs`.
+## Where to go next
+
+- `Learn the Basics` teaches the language in order.
+- `Classroom Programs` has complete short programs.
+- `Language Reference` lists exact syntax rules.
+- `Standard Library` documents built-in functions.

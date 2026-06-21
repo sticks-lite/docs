@@ -1,23 +1,15 @@
 # Classroom Programs
 
-These are beginner-friendly programs for classroom use. They replace the old
-package-level `examples/` directory; examples now live in the docs where they
-can be explained, copied, and tested alongside the language reference.
+These programs are short enough for lessons, slides, or warmups.
 
-## Hello World
-
-```slite
-say "Hello, world!"
-```
-
-## Name Greeter
+## Greeter
 
 ```slite
 name = ask "What is your name?"
 say "Hello " + name
 ```
 
-## Simple Calculator
+## Calculator
 
 ```slite
 first = toNumber(ask "First number?")
@@ -44,20 +36,6 @@ otherwise:
     say "Keep practicing"
 ```
 
-## Number Guessing Helper
-
-```slite
-secret = random(1, 10)
-guess = toNumber(ask "Guess a number from 1 to 10?")
-
-if guess == secret:
-    say "Correct"
-orif guess < secret:
-    say "Too low"
-otherwise:
-    say "Too high"
-```
-
 ## List Average
 
 ```slite
@@ -81,7 +59,7 @@ say profile["name"] + " is " + toText(profile["age"])
 say toText(profile)
 ```
 
-## Function Example
+## Function Practice
 
 ```slite
 say toText(square(6))
@@ -90,7 +68,7 @@ new square(x):
     return x * x
 ```
 
-## Error Handling
+## Safe Number Input
 
 ```slite
 attempt:
@@ -100,40 +78,4 @@ when ValueError:
     say "Please enter a number."
 when error:
     say "Something unexpected happened."
-```
-
-## Variables And Text
-
-```slite
-score = 0
-score += 10
-score++
-
-name = "Maya"
-say name + " scored " + toText(score)
-```
-
-## Loop Countdown
-
-```slite
-count = 3
-
-loopif count > 0:
-    say toText(count)
-    count--
-
-repeat 2 times:
-    say "Done"
-```
-
-## List Editing
-
-```slite
-items = [1, 2, 3]
-push(items, 4)
-insert(items, 0, 0)
-remove(items, 2)
-
-foreach item in items:
-    say toText(item)
 ```

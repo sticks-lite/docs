@@ -139,7 +139,7 @@ export default function App() {
               <p className="tagline">A small classroom language for first programs.</p>
               <p className="hero-description">
                 Sticks Lite helps students learn variables, decisions, loops, functions,
-                collections, and errors with readable syntax and teacher-friendly diagnostics.
+                collections, and errors with readable syntax and teacher-friendly messages.
               </p>
               <div className="hero-actions">
                 <button type="button" className="primary-action" onClick={() => setActiveId("learn-basics")}>
@@ -168,6 +168,28 @@ otherwise:
     say "Keep practicing"
 
 say "Done"`}</code></pre>
+            </div>
+          </section>
+
+          <section className="quickstart-section">
+            <div>
+              <p className="section-kicker">Quick Start</p>
+              <h2>Install the CLI and run one file.</h2>
+              <p>
+                Sticks Lite projects can be as small as a single `main.slite`
+                source file. No project generator is required.
+              </p>
+            </div>
+            <div className="terminal-card" onClick={copyFromArticle}>
+              <div className="terminal-header">
+                <span>Terminal</span>
+                <button className="copy-code" type="button" aria-label="Copy code" data-copy-target="quickstart-code">
+                  <span>Copy</span>
+                </button>
+              </div>
+              <pre><code id="quickstart-code">{`npm install -g sticks-lite
+sticks --version
+sticks main.slite`}</code></pre>
             </div>
           </section>
 
@@ -266,17 +288,6 @@ say "Done"`}</code></pre>
                 <span className="eyebrow">{activePage.group}</span>
                 <h1>{activePage.title}</h1>
                 <p>{activePage.description}</p>
-                <div className="hero-badges" aria-label="Page status">
-                  <span>{STICKS_LITE_VERSION_LABEL}</span>
-                </div>
-              </div>
-              <div className="install-card">
-                <Code2 size={17} />
-                <div>
-                  <code>npm install -g sticks-lite</code>
-                  <code>sticks --version</code>
-                  <code>sticks main.slite</code>
-                </div>
               </div>
             </div>
             <article

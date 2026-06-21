@@ -10,8 +10,8 @@ This repository contains the official documentation site for Sticks Lite.
 
 Sticks Lite is an educational programming language developed by Kabir Sekhon
 for monitored classroom environments. The docs explain installation, the
-`sticks` CLI, the interpreter, language syntax, built-ins, classroom programs,
-implementation notes, and friendly errors.
+`sticks` CLI, language syntax, built-ins, classroom programs, public API, and
+friendly errors.
 
 ## Who this is for
 
@@ -77,20 +77,19 @@ npm may display `npm i sticks-lite` on the package page, but Sticks Lite users s
 
 ## Documentation Structure
 
-Documentation source is organized like a full language documentation site:
+Documentation source is organized as a small language documentation site:
 
 - `pages/` contains site-level pages such as the homepage.
-- `learn/` contains the beginner learning path and classroom programs.
+- `learn/` contains the beginner path and classroom programs.
 - `docs/` contains installation, CLI, interpreter, and public API guides.
-- `reference/` contains language, standard library, grammar, errors, and diagnostics references.
-- `internals/` contains implementation notes for contributors and advanced readers.
+- `reference/` contains the language reference, standard library, and errors.
 - `src/` contains the React site shell, navigation registry, version helpers, and styles.
 
 Navigation metadata is defined in `src/docs.ts`.
 
 ## Editing Docs
 
-1. Edit the page in `pages/`, `learn/`, `docs/`, `reference/`, or `internals/`.
+1. Edit the page in `pages/`, `learn/`, `docs/`, or `reference/`.
 2. If adding a new page, register it in `src/docs.ts`.
 3. Run:
 

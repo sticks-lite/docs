@@ -1,119 +1,62 @@
-# Interpreter
+# Interpreter Notes
 
-The Sticks Lite interpreter package contains the platform-independent language
-core. It can run in Node.js, browser IDEs, tests, and future classroom tools
-because the core does not read files, write files, or directly access
-operating-system APIs.
-
-## Package
-
-Install the official package:
-
-```sh
-npm install -g sticks-lite
-sticks --version
-sticks main.slite
-```
-
-The package also exposes TypeScript APIs for tools that want to embed Sticks
-Lite.
-
-```ts
-import { lex, parse, runSource } from "sticks-lite";
-
-const tokens = lex('say "Hello"');
-const program = parse('say "Hello"');
-const result = await runSource('say "Hello"');
-```
-
-The public API is covered by dedicated tests. See `Public API` for the complete
-export contract.
+Sticks Lite uses an interpreter pipeline. The language core does not read files
+or write to the terminal directly.
 
 ## Pipeline
 
-Sticks Lite uses a small, visible pipeline:
-
-1. Lex source file text into tokens.
-2. Parse tokens into an abstract syntax tree.
-3. Pre-scan function definitions.
-4. Execute top-level statements.
-5. Return output, errors, and completion state.
-
-This shape is intentionally teachable. Students can learn the difference
-between text, tokens, syntax, and runtime behavior without needing a large
-language implementation background.
-
-## Public APIs
-
-### `lex(source: string): Token[]`
-
-Returns tokens with source positions. The lexer handles comments, strings,
-numbers, identifiers, operators, punctuation, indentation, and block boundaries.
-
-### `parse(source: string): Program`
-
-Returns a program AST. Parser errors include line, column, message, and a
-teaching hint when possible.
-
-### `runSource(source: string, io?: RuntimeIO): Promise<RunResult>`
-
-Runs a complete program. The optional `io` adapter supplies input and receives
-output.
-
-```ts
-await runSource(source, {
-  readInput(prompt) {
-    return window.prompt(prompt) ?? "";
-  },
-  writeOutput(text) {
-    console.log(text);
-  },
-});
+```txt
+source text
+lexer
+parser
+program AST
+function pre-scan
+interpreter
+RuntimeIO
 ```
 
-## RuntimeIO
+## Why this matters
 
-```ts
-type RuntimeIO = {
-  readInput(prompt: string): string | Promise<string>;
-  writeOutput(text: string): void;
-};
+- The CLI can read files without putting file APIs into the language.
+- The browser IDE can provide input and output through the same runtime API.
+- Tests can run programs without a terminal.
+- Friendly errors can point to the same line and column across tools.
+
+## Runtime values
+
+```txt
+number
+text
+boolean
+null
+list
+tuple
+dictionary
+function
+builtin
 ```
 
-The `ask` command uses `readInput`. The `say` command uses `writeOutput`.
+Lists and dictionaries are mutable. Tuples are immutable.
 
-## Scope Model
+## Functions
 
-Variables live in the current function scope. Blocks do not create scopes.
-Functions do create scopes. Constants created with `DEFINE` are global and
-protected.
-
-## Function Pre-Scan
-
-Function definitions are collected before top-level statements execute.
+Function definitions are collected before top-level code runs. This allows a
+student to call a function before its definition appears in the file.
 
 ```slite
 say toText(double(5))
 
-new double(value):
-    return value * 2
+new double(x):
+    return x * 2
 ```
 
-This works because `double` is known before the first statement runs.
+## Boundaries
 
-## Error Objects
+The interpreter core receives source text and `RuntimeIO`. The Node.js CLI is
+responsible for:
 
-Errors use `SticksLiteError`.
-
-```ts
-type SticksLiteError = {
-  name: string;
-  message: string;
-  line: number;
-  column: number;
-  hint?: string;
-};
-```
-
-The goal is not merely to fail. The interpreter should help a student locate
-the mistake and understand the next correction to try.
+- reading `.slite` files
+- resolving `main.slite`
+- terminal input
+- terminal output
+- path error messages

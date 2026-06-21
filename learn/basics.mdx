@@ -1,20 +1,36 @@
-# Tutorial
+# Learn the Basics
 
-This tutorial introduces Sticks Lite in the order a student is likely to meet it in class.
+This guide teaches the core ideas in the order students usually need them.
 
-## First Program
+## You will learn
 
-Use `say` to print text.
+- Printing output
+- Storing values
+- Reading input
+- Making decisions
+- Repeating work
+- Grouping data
+- Writing functions
+- Handling expected errors
+
+## Output
+
+Use `say` to print one value.
 
 ```slite
 say "Hello, world!"
 ```
 
-The program has one statement. Sticks Lite runs it from top to bottom.
+Use `toText` when printing a number with text.
+
+```slite
+score = 10
+say "Score: " + toText(score)
+```
 
 ## Variables
 
-Variables store values.
+Variables store values for later.
 
 ```slite
 score = 0
@@ -22,8 +38,6 @@ score += 10
 score++
 say toText(score)
 ```
-
-The final value is `11`.
 
 ## Input
 
@@ -34,16 +48,16 @@ name = ask "What is your name?"
 say "Hello " + name
 ```
 
-Convert text to a number when you want arithmetic.
+Convert text before doing math.
 
 ```slite
 age = toNumber(ask "Age?")
 say "Next year: " + toText(age + 1)
 ```
 
-## Branching
+## Decisions
 
-Use `if`, `orif`, and `otherwise`.
+Conditions must be `True` or `False`.
 
 ```slite
 score = 87
@@ -56,9 +70,7 @@ otherwise:
     say "Keep practicing"
 ```
 
-Every condition must be boolean.
-
-## Repetition
+## Loops
 
 Use `repeat` when the count is known.
 
@@ -67,7 +79,7 @@ repeat 3 times:
     say "Practice"
 ```
 
-Use `loopif` when the condition decides when to stop.
+Use `loopif` when the program decides when to stop.
 
 ```slite
 count = 3
@@ -79,17 +91,19 @@ loopif count > 0:
 
 ## Collections
 
-Lists hold ordered values and can be changed.
+Lists can change.
 
 ```slite
 scores = [90, 85, 100]
 push(scores, 95)
+say toText(scores)
 ```
 
-Tuples are ordered but cannot be changed.
+Tuples cannot change.
 
 ```slite
 point = (10, 20)
+say toText(point[0])
 ```
 
 Dictionaries use text keys.
@@ -101,7 +115,7 @@ say profile["name"]
 
 ## Functions
 
-Functions name reusable behavior.
+Functions name reusable work.
 
 ```slite
 new square(x):
@@ -110,11 +124,9 @@ new square(x):
 say toText(square(5))
 ```
 
-Functions create their own local scope.
+## Expected errors
 
-## Errors
-
-Errors are part of learning. Sticks Lite errors say what happened and where.
+Use `attempt` when the program can recover.
 
 ```slite
 attempt:
@@ -122,5 +134,3 @@ attempt:
 when ValueError:
     say "Use digits like 13."
 ```
-
-Use `attempt` only when the program can recover.

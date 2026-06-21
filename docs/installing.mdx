@@ -1,59 +1,35 @@
-# Installing
+# Installation and CLI
 
-This page covers installing the Sticks Lite interpreter package and running the
-`sticks` CLI.
+The `sticks` command runs `.slite` source files and project folders.
 
 ## Requirements
 
-Sticks Lite {{STICKS_LITE_VERSION_LABEL}} is distributed as a Node.js CLI package. Install a current
-long-term support version of Node.js, then use npm to install the global
-`sticks` CLI.
+Install a current long-term support version of Node.js. Then check:
 
 ```sh
 node --version
 npm --version
 ```
 
-## Install The Global CLI
+## Install
 
-Install Sticks Lite globally:
+Install Sticks Lite globally so `sticks` is available in the terminal.
 
 ```sh
 npm install -g sticks-lite
-sticks --version
+```
+
+## Run a file
+
+```sh
 sticks main.slite
 ```
 
-The final command runs a `.slite` source file named `main.slite`.
+Only `.slite` source files can be run.
 
-## npm Package Page
+## Run a folder
 
-npm may display `npm i sticks-lite` on the package page. For classroom use, the
-recommended installation is still global so the `sticks` command is available
-directly from the terminal.
-
-Teachers may add an npm script in a project after installing globally:
-
-```json
-{
-  "scripts": {
-    "start": "sticks main.slite"
-  }
-}
-```
-
-Then run:
-
-```sh
-npm start
-```
-
-## Directory Projects
-
-When the `sticks` CLI receives a directory, it looks for a `.slite` source file
-named `main.slite` inside that directory. The filename must be exactly
-lowercase `main.slite` so projects run the same way on Windows, macOS, and
-Linux.
+If you pass a folder, Sticks Lite looks for `main.slite` inside it.
 
 ```sh
 sticks ./student-project
@@ -67,21 +43,21 @@ student-project/
   notes.txt
 ```
 
-## Updating
+The filename must be exactly `main.slite` on Windows, macOS, and Linux.
 
-Update the global CLI with:
+## Update
 
 ```sh
 npm update -g sticks-lite
 ```
 
-For classroom work, teachers should update intentionally and re-test lesson
-material before a class uses the new version.
+Teachers should test lesson files before updating classroom machines.
 
-## Educational Use
+## Common CLI errors
 
-Use Sticks Lite in supervised learning settings. A teacher, mentor, or parent
-should review what students run and decide whether each lesson is appropriate.
-
-Sticks Lite is not for production apps, security sandboxing, unsupervised
-execution of untrusted source files, or safety-critical work.
+| Situation | Fix |
+| --- | --- |
+| Wrong extension | Rename the source file to end in `.slite`. |
+| Missing file | Check the path or run from a folder with `main.slite`. |
+| Empty folder | Add `main.slite`. |
+| `Main.slite` instead of `main.slite` | Rename it exactly. |
