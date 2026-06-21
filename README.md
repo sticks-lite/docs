@@ -1,51 +1,41 @@
-# Sticks Lite Documentation
+# Sticks Lite Docs Site
 
-This directory contains the official Sticks Lite documentation site.
+This directory contains the public documentation website for Sticks Lite, an
+educational programming language for monitored classroom environments.
 
-Sticks Lite is an educational programming language for monitored classroom
-environments. The site is organized as a language homepage plus Learn,
-Reference, Tools, and Classroom documentation.
+The site is a language homepage plus four documentation sections:
+
+- Learn: guided beginner lessons.
+- Reference: formal language, CLI, built-in, error, and API behavior.
+- Tools: installation, file running, embedding, runtime I/O, and versioning.
+- Classroom: short teacher-facing guidance.
 
 ## Develop
 
-Install dependencies:
-
 ```sh
 npm install
-```
-
-Start the local site:
-
-```sh
 npm run dev
 ```
 
-Build:
+Build and check:
 
 ```sh
 npm run build
-```
-
-Run the docs check:
-
-```sh
 npm run check
 ```
 
-## Documentation Structure
+## Source Structure
 
-- `pages/` contains site-level content used by the homepage and search.
-- `learn/` contains guided beginner lessons and classroom practice programs.
-- `reference/` contains formal language, CLI, built-in, error, and API reference pages.
-- `tools/` contains installation, CLI, embedding, runtime I/O, and versioning guides.
-- `classroom/` contains short teacher-facing guidance.
-- `src/` contains the React shell, navigation registry, version helper, and styles.
+- `src/content.ts` defines the public docs pages and navigation order.
+- `src/App.tsx` contains the homepage, docs shell, search, routing, table of
+  contents, and code-copy behavior.
+- `src/styles.css` contains the site design system and responsive layout.
+- `src/version.ts` reads the package version from metadata.
 
-Navigation metadata is defined in `src/docs.ts`.
+Use `slite` code fences only for examples that should run successfully in the
+docs example tests.
 
-## Sticks Lite Installation
-
-The public package install command is:
+## Public Install Command
 
 ```sh
 npm install -g sticks-lite
@@ -63,20 +53,7 @@ Run a folder containing `main.slite`:
 sticks .
 ```
 
-## Editing Docs
-
-1. Edit or add a page in the matching section folder.
-2. Register new pages in `src/docs.ts`.
-3. Use `slite` fences only for examples that should run successfully.
-4. Run `npm run build`.
-5. Open the local site and check the homepage, sidebar, code copy buttons, and mobile layout.
-
 ## Responsible Use
 
 Use Sticks Lite in supervised learning settings. A teacher, mentor, or parent
-should review lesson files and decide whether each lesson is appropriate.
-
-## License
-
-MIT License. See `LICENSE`.
-
+should review lesson files and decide what students run.
