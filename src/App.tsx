@@ -1,5 +1,16 @@
 import { type MouseEvent, useMemo, useState } from "react";
-import { BookOpen, ChevronRight, Code2, Search } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ChevronRight,
+  Code2,
+  GraduationCap,
+  Play,
+  Search,
+  ShieldCheck,
+  Terminal,
+} from "lucide-react";
 import { marked } from "marked";
 import { groupedPages, pages } from "./docs";
 import { STICKS_LITE_VERSION_LABEL } from "./version";
@@ -39,10 +50,11 @@ function renderMarkdown(markdown: string): string {
     const id = `code-${codeIndex}`;
     codeIndex += 1;
     const label = lang ? `<span>${lang}</span>` : "";
-    return `<div class="code-frame"><div class="code-toolbar">${label}<button class="copy-code" type="button" data-copy-target="${id}">Copy</button></div><pre><code id="${id}" class="language-${lang ?? "text"}">${text
+    const code = text
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")}</code></pre></div>`;
+      .replaceAll(">", "&gt;");
+    return `<div class="code-frame"><div class="code-toolbar">${label}<button class="copy-code" type="button" aria-label="Copy code" data-copy-target="${id}"><span>Copy</span></button></div><pre><code id="${id}" class="language-${lang ?? "text"}">${code}</code></pre></div>`;
   };
   return marked.parse(markdown, { renderer }) as string;
 }
@@ -51,6 +63,7 @@ export default function App() {
   const [activeId, setActiveId] = useState("overview");
   const [query, setQuery] = useState("");
   const activePage = pages.find((page) => page.id === activeId) ?? pages[0];
+  const isHome = activePage.id === "overview";
 
   const html = useMemo(() => renderMarkdown(activePage.body), [activePage]);
   const toc = useMemo(() => extractToc(activePage.body), [activePage]);
@@ -91,7 +104,7 @@ export default function App() {
   }
 
   return (
-    <div className="docs-shell">
+    <div className={isHome ? "site-shell home-mode" : "site-shell docs-mode"}>
       <header className="topbar">
         <a className="brand" href="#overview" onClick={() => setActiveId("overview")}>
           <img src="/sticks-lite-logo.png" alt="Sticks Lite" />
@@ -103,80 +116,190 @@ export default function App() {
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search docs"
+            placeholder="Search"
           />
         </div>
-        <nav className="toplinks" aria-label="External links">
+        <nav className="toplinks" aria-label="Main navigation">
+          <button type="button" onClick={() => setActiveId("learn-basics")}>Learn</button>
+          <button type="button" onClick={() => setActiveId("language-reference")}>Reference</button>
+          <button type="button" onClick={() => setActiveId("installing")}>Install</button>
           <a href="https://github.com/sticks-lite/sticks-lite/">GitHub</a>
-          <a href="https://www.npmjs.com/package/sticks-lite">npm</a>
         </nav>
       </header>
 
-      <aside className="sidebar">
-        <div className="side-intro">
-          <BookOpen size={18} />
-          <div>
-            <span>Documentation</span>
-            <small>Educational language reference</small>
-          </div>
-        </div>
-        {Object.entries(filteredGroups).map(([group, groupPages]) => (
-          <section className="nav-group" key={group}>
-            <h2>{group}</h2>
-            {groupPages.map((page) => (
-              <button
-                key={page.id}
-                className={page.id === activeId ? "active" : ""}
-                onClick={() => setActiveId(page.id)}
-              >
-                <span>{page.title}</span>
-                <ChevronRight size={15} />
-              </button>
-            ))}
+      {isHome ? (
+        <main className="language-home">
+          <section className="language-hero">
+            <div className="hero-copy">
+              <div className="language-mark">
+                <img src="/sticks-lite-logo.png" alt="" />
+                <span>{STICKS_LITE_VERSION_LABEL}</span>
+              </div>
+              <h1>Sticks Lite</h1>
+              <p className="tagline">A small classroom language for first programs.</p>
+              <p className="hero-description">
+                Sticks Lite helps students learn variables, decisions, loops, functions,
+                collections, and errors with readable syntax and teacher-friendly diagnostics.
+              </p>
+              <div className="hero-actions">
+                <button type="button" className="primary-action" onClick={() => setActiveId("learn-basics")}>
+                  Start learning
+                  <ArrowRight size={17} />
+                </button>
+                <button type="button" className="secondary-action" onClick={() => setActiveId("installing")}>
+                  Install the CLI
+                </button>
+              </div>
+            </div>
+            <div className="hero-preview" onClick={copyFromArticle}>
+              <div className="preview-header">
+                <span>main.slite</span>
+                <button className="copy-code" type="button" aria-label="Copy code" data-copy-target="home-code">
+                  <span>Copy</span>
+                </button>
+              </div>
+              <pre><code id="home-code">{`score = 87
+
+if score >= 90:
+    say "A"
+orif score >= 80:
+    say "B"
+otherwise:
+    say "Keep practicing"
+
+say "Done"`}</code></pre>
+            </div>
           </section>
-        ))}
-      </aside>
 
-      <main className="content">
-        <div className="doc-hero">
-          <div>
-            <span className="eyebrow">{activePage.group}</span>
-            <h1>{activePage.title}</h1>
-            <p>{activePage.description}</p>
-            <div className="hero-badges" aria-label="Documentation status">
-              <span>{STICKS_LITE_VERSION_LABEL}</span>
-              <span>MDX docs</span>
-              <span>Classroom-safe guidance</span>
+          <section className="home-section">
+            <div className="section-heading">
+              <h2>Learn programming fundamentals directly.</h2>
+              <p>Small syntax, predictable rules, and errors written for beginners.</p>
             </div>
-          </div>
-          <div className="install-card">
-            <Code2 size={17} />
+            <div className="feature-grid">
+              <article>
+                <GraduationCap size={22} />
+                <h3>Built for teaching</h3>
+                <p>Designed for monitored classrooms, clubs, camps, and first computer-science lessons.</p>
+              </article>
+              <article>
+                <Terminal size={22} />
+                <h3>Runs from the terminal</h3>
+                <p>Install globally with npm and run a source file with <code>sticks main.slite</code>.</p>
+              </article>
+              <article>
+                <Code2 size={22} />
+                <h3>Readable language core</h3>
+                <p>Indentation blocks, command-style statements, lists, dictionaries, functions, and friendly errors.</p>
+              </article>
+              <article>
+                <ShieldCheck size={22} />
+                <h3>Clear boundaries</h3>
+                <p>The interpreter has no direct file-system or network APIs and is documented for responsible classroom use.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="home-section split-section">
             <div>
-              <code>npm install -g sticks-lite</code>
-              <code>sticks --version</code>
-              <code>sticks main.slite</code>
+              <h2>Choose a path.</h2>
+              <p>Start with lessons, jump into exact language rules, or install the command-line tool.</p>
             </div>
-          </div>
-        </div>
-        <article
-          className="markdown"
-          onClick={copyFromArticle}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </main>
+            <div className="path-list">
+              <button type="button" onClick={() => setActiveId("learn-basics")}>
+                <BookOpen size={18} />
+                <span>
+                  <strong>Learn</strong>
+                  Beginner concepts in teaching order.
+                </span>
+                <ChevronRight size={17} />
+              </button>
+              <button type="button" onClick={() => setActiveId("language-reference")}>
+                <CheckCircle2 size={18} />
+                <span>
+                  <strong>Reference</strong>
+                  Syntax, semantics, standard library, and errors.
+                </span>
+                <ChevronRight size={17} />
+              </button>
+              <button type="button" onClick={() => setActiveId("installing")}>
+                <Play size={18} />
+                <span>
+                  <strong>Install</strong>
+                  Global CLI setup and first run.
+                </span>
+                <ChevronRight size={17} />
+              </button>
+            </div>
+          </section>
+        </main>
+      ) : (
+        <>
+          <aside className="sidebar">
+            <div className="side-intro">
+              <BookOpen size={18} />
+              <div>
+                <span>Sticks Lite</span>
+                <small>Learn, reference, and tools</small>
+              </div>
+            </div>
+            {Object.entries(filteredGroups).map(([group, groupPages]) => (
+              <section className="nav-group" key={group}>
+                <h2>{group}</h2>
+                {groupPages.map((page) => (
+                  <button
+                    key={page.id}
+                    className={page.id === activeId ? "active" : ""}
+                    onClick={() => setActiveId(page.id)}
+                  >
+                    <span>{page.title}</span>
+                    <ChevronRight size={15} />
+                  </button>
+                ))}
+              </section>
+            ))}
+          </aside>
 
-      <aside className="toc" aria-label="On this page">
-        <h2>On this page</h2>
-        {toc.length === 0 ? (
-          <p>No sections</p>
-        ) : (
-          toc.map((item) => (
-            <a className={item.depth === 3 ? "indent" : ""} href={`#${item.id}`} key={item.id}>
-              {item.title}
-            </a>
-          ))
-        )}
-      </aside>
+          <main className="content">
+            <div className="doc-hero">
+              <div>
+                <span className="eyebrow">{activePage.group}</span>
+                <h1>{activePage.title}</h1>
+                <p>{activePage.description}</p>
+                <div className="hero-badges" aria-label="Page status">
+                  <span>{STICKS_LITE_VERSION_LABEL}</span>
+                </div>
+              </div>
+              <div className="install-card">
+                <Code2 size={17} />
+                <div>
+                  <code>npm install -g sticks-lite</code>
+                  <code>sticks --version</code>
+                  <code>sticks main.slite</code>
+                </div>
+              </div>
+            </div>
+            <article
+              className="markdown"
+              onClick={copyFromArticle}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </main>
+
+          <aside className="toc" aria-label="On this page">
+            <h2>On this page</h2>
+            {toc.length === 0 ? (
+              <p>No sections</p>
+            ) : (
+              toc.map((item) => (
+                <a className={item.depth === 3 ? "indent" : ""} href={`#${item.id}`} key={item.id}>
+                  {item.title}
+                </a>
+              ))
+            )}
+          </aside>
+        </>
+      )}
     </div>
   );
 }

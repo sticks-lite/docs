@@ -77,23 +77,20 @@ npm may display `npm i sticks-lite` on the package page, but Sticks Lite users s
 
 ## Documentation Structure
 
-Documentation source is organized like a full docs website and is written as
-MDX-compatible content:
+Documentation source is organized like a full language documentation site:
 
 - `pages/` contains site-level pages such as the homepage.
 - `learn/` contains the beginner learning path and classroom programs.
 - `docs/` contains installation, CLI, interpreter, and public API guides.
 - `reference/` contains language, standard library, grammar, errors, and diagnostics references.
 - `internals/` contains implementation notes for contributors and advanced readers.
-- `src/` contains the React docs shell, navigation registry, version helpers, and styles.
+- `src/` contains the React site shell, navigation registry, version helpers, and styles.
 
-The React docs shell imports `.mdx` source with Vite raw imports and renders it
-through the local markdown/MDX-compatible renderer. Navigation metadata is
-defined in `src/docs.ts`.
+Navigation metadata is defined in `src/docs.ts`.
 
 ## Editing Docs
 
-1. Edit the MDX page in `pages/`, `learn/`, `docs/`, `reference/`, or `internals/`.
+1. Edit the page in `pages/`, `learn/`, `docs/`, `reference/`, or `internals/`.
 2. If adding a new page, register it in `src/docs.ts`.
 3. Run:
 
