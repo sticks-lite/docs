@@ -1,16 +1,21 @@
 import { type MouseEvent, useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
-  BookOpen,
+  CheckCircle2,
   ChevronRight,
-  Code2,
-  FileCode2,
+  ClipboardList,
+  Compass,
+  Copy,
   GraduationCap,
+  Hash,
   Library,
+  Menu,
   Search,
   ShieldCheck,
+  Sparkles,
   Terminal,
   UsersRound,
+  X,
 } from "lucide-react";
 import { marked } from "marked";
 import { type DocGroup, type DocPage, groupedPages, groupOrder, pages } from "./docs";
@@ -20,6 +25,36 @@ marked.use({
   gfm: true,
   breaks: false,
 });
+
+const groupMeta: Record<DocGroup, { description: string; accent: string }> = {
+  Home: {
+    description: "Language overview and paths into the docs.",
+    accent: "ink",
+  },
+  Learn: {
+    description: "Concept-first lessons for beginner programs.",
+    accent: "green",
+  },
+  Reference: {
+    description: "Precise syntax, runtime, built-in, CLI, and API rules.",
+    accent: "blue",
+  },
+  Tools: {
+    description: "Install, run, embed, and version Sticks Lite.",
+    accent: "amber",
+  },
+  Classroom: {
+    description: "Short guidance for monitored teaching environments.",
+    accent: "rose",
+  },
+};
+
+const topNav = [
+  { id: "learn", label: "Learn" },
+  { id: "reference", label: "Reference" },
+  { id: "tools-installation", label: "Tools" },
+  { id: "classroom-use", label: "Classroom" },
+];
 
 function slugify(value: string): string {
   return value
@@ -51,13 +86,14 @@ function renderMarkdown(markdown: string): string {
 
   renderer.heading = ({ text, depth }) => {
     const id = slugify(text);
-    return `<h${depth} id="${id}">${text}</h${depth}>`;
+    const anchor = depth > 1 ? `<a class="heading-anchor" href="#${id}" aria-label="Link to ${text}"><span>#</span></a>` : "";
+    return `<h${depth} id="${id}">${text}${anchor}</h${depth}>`;
   };
 
   renderer.code = ({ text, lang }) => {
     const id = `code-${codeIndex}`;
     codeIndex += 1;
-    const label = lang ? `<span>${lang}</span>` : "";
+    const label = lang ? `<span>${lang}</span>` : "<span>text</span>";
     const code = text
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
@@ -71,6 +107,7 @@ function renderMarkdown(markdown: string): string {
 export default function App() {
   const [activeId, setActiveId] = useState(() => pageFromHash());
   const [query, setQuery] = useState("");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const activePage = pages.find((page) => page.id === activeId) ?? pages[0];
   const isHome = activePage.id === "overview";
 
@@ -84,29 +121,47 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        document.querySelector<HTMLInputElement>("#doc-search")?.focus();
+      }
+      if (event.key === "Escape") {
+        setQuery("");
+        setMobileNavOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const html = useMemo(() => renderMarkdown(activePage.body), [activePage]);
   const toc = useMemo(() => extractToc(activePage.body), [activePage]);
-  const filteredGroups = useMemo(() => {
-    if (!query.trim()) return groupedPages;
-
+  const searchResults = useMemo(() => {
+    if (!query.trim()) return [];
     const normalized = query.trim().toLowerCase();
-    const matches = pages.filter((page) => {
-      return (
-        page.title.toLowerCase().includes(normalized) ||
-        page.description.toLowerCase().includes(normalized) ||
-        page.body.toLowerCase().includes(normalized)
-      );
-    });
-
-    return groupOrder.reduce<Record<DocGroup, DocPage[]>>((acc, group) => {
-      acc[group] = matches.filter((page) => page.group === group);
-      return acc;
-    }, {} as Record<DocGroup, DocPage[]>);
+    return pages
+      .filter((page) => page.id !== "overview")
+      .filter((page) => {
+        return (
+          page.title.toLowerCase().includes(normalized) ||
+          page.description.toLowerCase().includes(normalized) ||
+          page.group.toLowerCase().includes(normalized) ||
+          page.body.toLowerCase().includes(normalized)
+        );
+      })
+      .slice(0, 8);
   }, [query]);
+
+  const activeIndex = pages.findIndex((page) => page.id === activePage.id);
+  const previousPage = pages.slice(1, activeIndex).reverse().find((page) => page.id !== "overview");
+  const nextPage = pages.slice(activeIndex + 1).find((page) => page.id !== "overview");
 
   function navigate(id: string) {
     setActiveId(id);
     setQuery("");
+    setMobileNavOpen(false);
     window.history.pushState(null, "", `#${id}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -141,46 +196,79 @@ export default function App() {
   }
 
   return (
-    <div className={isHome ? "site-shell home-mode" : "site-shell docs-mode"}>
-      <header className="topbar">
-        <a className="brand" href="#overview" onClick={(event) => navigateFromClick(event, "overview")}>
-          <img src="/sticks-lite-logo.png" alt="Sticks Lite" />
+    <div className={isHome ? "app-shell home-shell" : "app-shell docs-shell"}>
+      <header className="site-header">
+        <a className="brand-lockup" href="#overview" onClick={(event) => navigateFromClick(event, "overview")}>
+          <img src="/sticks-lite-logo.png" alt="" />
           <span>Sticks Lite</span>
-          <strong>{STICKS_LITE_VERSION_LABEL}</strong>
+          <small>{STICKS_LITE_VERSION_LABEL}</small>
         </a>
 
-        <label className="search">
+        <div className="command-search">
           <Search size={16} aria-hidden="true" />
           <input
+            id="doc-search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search docs"
+            placeholder="Search syntax, CLI, errors..."
             aria-label="Search docs"
           />
-        </label>
+          <kbd>⌘K</kbd>
+          {query ? (
+            <button type="button" className="clear-search" aria-label="Clear search" onClick={() => setQuery("")}>
+              <X size={14} aria-hidden="true" />
+            </button>
+          ) : null}
+          {query ? (
+            <div className="search-popover" role="listbox" aria-label="Search results">
+              {searchResults.length === 0 ? (
+                <p>No docs pages match “{query}”.</p>
+              ) : (
+                searchResults.map((page) => (
+                  <a href={`#${page.id}`} key={page.id} onClick={(event) => navigateFromClick(event, page.id)}>
+                    <span>{page.group}</span>
+                    <strong>{page.title}</strong>
+                    <small>{page.description}</small>
+                  </a>
+                ))
+              )}
+            </div>
+          ) : null}
+        </div>
 
-        <nav className="toplinks" aria-label="Main navigation">
-          <a href="#learn" onClick={(event) => navigateFromClick(event, "learn")}>Learn</a>
-          <a href="#reference" onClick={(event) => navigateFromClick(event, "reference")}>Reference</a>
-          <a href="#tools-installation" onClick={(event) => navigateFromClick(event, "tools-installation")}>Tools</a>
-          <a href="#classroom-use" onClick={(event) => navigateFromClick(event, "classroom-use")}>Classroom</a>
+        <nav className="primary-nav" aria-label="Main navigation">
+          {topNav.map((item) => (
+            <a href={`#${item.id}`} key={item.id} onClick={(event) => navigateFromClick(event, item.id)}>
+              {item.label}
+            </a>
+          ))}
           <a href="https://github.com/sticks-lite/sticks-lite/">GitHub</a>
         </nav>
+
+        <button
+          type="button"
+          className="mobile-menu-button"
+          aria-label="Toggle navigation"
+          aria-expanded={mobileNavOpen}
+          onClick={() => setMobileNavOpen((open) => !open)}
+        >
+          {mobileNavOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+        </button>
       </header>
 
       {isHome ? (
-        <main className="language-home">
-          <section className="language-hero">
+        <main className="home-main">
+          <section className="hero-board">
             <div className="hero-copy">
-              <div className="language-mark">
-                <img src="/sticks-lite-logo.png" alt="" />
-                <span>Documentation for {STICKS_LITE_VERSION_LABEL}</span>
+              <div className="hero-kicker">
+                <Sparkles size={16} aria-hidden="true" />
+                <span>Language docs for monitored classrooms</span>
               </div>
               <h1>Sticks Lite</h1>
-              <p className="tagline">A classroom programming language for first programs.</p>
+              <p className="tagline">A small programming language for first real programs.</p>
               <p className="hero-description">
-                Sticks Lite teaches variables, decisions, loops, functions, collections,
-                and recoverable errors with readable `.slite` files and the `sticks` CLI.
+                Students write `.slite` files, run them with `sticks`, and learn the core ideas:
+                values, choices, loops, functions, collections, and recoverable errors.
               </p>
               <div className="hero-actions">
                 <a className="primary-action" href="#learn" onClick={(event) => navigateFromClick(event, "learn")}>
@@ -193,26 +281,16 @@ export default function App() {
               </div>
             </div>
 
-            <div className="hero-stack">
-              <div className="install-card" onClick={copyFromArticle}>
-                <div className="terminal-header">
-                  <span>Install</span>
-                  <button className="copy-code" type="button" aria-label="Copy code" data-copy-target="install-code">
-                    <span>Copy</span>
-                  </button>
-                </div>
-                <pre><code id="install-code">{`npm install -g sticks-lite
-sticks main.slite`}</code></pre>
+            <div className="language-console" onClick={copyFromArticle}>
+              <div className="console-tabs">
+                <span className="active">main.slite</span>
+                <span>Terminal</span>
+                <button className="copy-code" type="button" aria-label="Copy code" data-copy-target="hero-code">
+                  <Copy size={13} aria-hidden="true" />
+                  <span>Copy</span>
+                </button>
               </div>
-
-              <div className="hero-preview" onClick={copyFromArticle}>
-                <div className="preview-header">
-                  <span>main.slite</span>
-                  <button className="copy-code" type="button" aria-label="Copy code" data-copy-target="home-code">
-                    <span>Copy</span>
-                  </button>
-                </div>
-                <pre><code id="home-code">{`score = 87
+              <pre><code id="hero-code">{`score = 87
 
 if score >= 90:
     say "A"
@@ -220,120 +298,87 @@ orif score >= 80:
     say "B"
 otherwise:
     say "Keep practicing"`}</code></pre>
+              <div className="console-output">
+                <span>Output</span>
+                <strong>B</strong>
               </div>
             </div>
           </section>
 
-          <section className="home-section first-steps">
+          <section className="install-strip" onClick={copyFromArticle} aria-label="Install Sticks Lite">
             <div>
-              <p className="section-kicker">Quick start</p>
-              <h2>Run one file or a folder with `main.slite`.</h2>
-              <p>
-                Sticks Lite projects can be a single source file. A folder project
-                runs from an exactly named `main.slite` entry file.
-              </p>
+              <Terminal size={18} aria-hidden="true" />
+              <span>Install and run</span>
             </div>
-            <div className="quick-links">
-              <a href="#learn-first-program" onClick={(event) => navigateFromClick(event, "learn-first-program")}>
-                <FileCode2 size={18} aria-hidden="true" />
-                Your first program
-              </a>
-              <a href="#tools-cli" onClick={(event) => navigateFromClick(event, "tools-cli")}>
-                <Terminal size={18} aria-hidden="true" />
-                CLI guide
-              </a>
-              <a href="#reference-typescript-api" onClick={(event) => navigateFromClick(event, "reference-typescript-api")}>
-                <Code2 size={18} aria-hidden="true" />
-                TypeScript API
-              </a>
-            </div>
+            <code id="install-code">{`npm install -g sticks-lite
+sticks main.slite`}</code>
+            <button className="copy-code light-copy" type="button" aria-label="Copy install command" data-copy-target="install-code">
+              <Copy size={13} aria-hidden="true" />
+              <span>Copy</span>
+            </button>
           </section>
 
-          <section className="home-section">
-            <div className="section-heading">
-              <h2>Small language, clear concepts.</h2>
-              <p>Enough structure to teach real programming ideas without turning the first lesson into tool setup.</p>
+          <section className="home-index" aria-label="Documentation sections">
+            {groupOrder.filter((group) => group !== "Home").map((group) => {
+              const groupPages = groupedPages[group];
+              return (
+                <article className={`index-panel ${groupMeta[group].accent}`} key={group}>
+                  <div>
+                    <span className="panel-label">{group}</span>
+                    <h2>{group === "Learn" ? "Start with concepts." : group === "Reference" ? "Look up exact rules." : group === "Tools" ? "Run and embed it." : "Teach with boundaries."}</h2>
+                    <p>{groupMeta[group].description}</p>
+                  </div>
+                  <div className="panel-links">
+                    {groupPages.slice(0, 5).map((page) => (
+                      <a href={`#${page.id}`} key={page.id} onClick={(event) => navigateFromClick(event, page.id)}>
+                        {page.title}
+                        <ChevronRight size={14} aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </section>
+
+          <section className="concept-rhythm">
+            <div className="section-intro">
+              <span className="panel-label">Why it works</span>
+              <h2>Designed for the moment when syntax first becomes a tool.</h2>
             </div>
-            <div className="feature-grid">
+            <div className="rhythm-grid">
               <article>
                 <GraduationCap size={22} aria-hidden="true" />
-                <h3>Built for learning</h3>
-                <p>Students work with output, input, values, branches, loops, functions, and collections directly.</p>
+                <h3>Beginner path</h3>
+                <p>Each Learn page teaches one concept, shows output, and names the mistakes students are likely to meet.</p>
               </article>
               <article>
-                <Terminal size={22} aria-hidden="true" />
-                <h3>Runs from the terminal</h3>
-                <p>Install with npm, run `.slite` files, or run folders that contain `main.slite`.</p>
+                <Library size={22} aria-hidden="true" />
+                <h3>Reference split</h3>
+                <p>Tutorial prose stays out of formal rules, so advanced lookups stay fast and compact.</p>
               </article>
               <article>
                 <ShieldCheck size={22} aria-hidden="true" />
-                <h3>Friendly errors</h3>
-                <p>Errors include line, column, message, and a hint that helps students make the next edit.</p>
+                <h3>Classroom boundaries</h3>
+                <p>Responsible-use guidance is short, plain, and written for monitored educational settings.</p>
               </article>
-            </div>
-          </section>
-
-          <section className="home-section classroom-note">
-            <div>
-              <p className="section-kicker">Classroom note</p>
-              <h2>Use Sticks Lite in monitored learning settings.</h2>
-            </div>
-            <p>
-              Sticks Lite is intended for classrooms, clubs, camps, tutoring, and
-              other guided environments. Run programs you understand in an
-              environment you supervise.
-            </p>
-          </section>
-
-          <section className="home-section split-section">
-            <div>
-              <h2>Choose a path.</h2>
-              <p>Follow lessons, look up exact rules, install tools, or plan classroom use.</p>
-            </div>
-            <div className="path-list">
-              <a href="#learn" onClick={(event) => navigateFromClick(event, "learn")}>
-                <BookOpen size={18} aria-hidden="true" />
-                <span>
-                  <strong>Learn</strong>
-                  Beginner concepts in teaching order.
-                </span>
-                <ChevronRight size={17} aria-hidden="true" />
-              </a>
-              <a href="#reference" onClick={(event) => navigateFromClick(event, "reference")}>
-                <Library size={18} aria-hidden="true" />
-                <span>
-                  <strong>Reference</strong>
-                  Syntax, values, built-ins, CLI, and API.
-                </span>
-                <ChevronRight size={17} aria-hidden="true" />
-              </a>
-              <a href="#classroom-use" onClick={(event) => navigateFromClick(event, "classroom-use")}>
-                <UsersRound size={18} aria-hidden="true" />
-                <span>
-                  <strong>Classroom</strong>
-                  Responsible use, teaching sequence, and debugging.
-                </span>
-                <ChevronRight size={17} aria-hidden="true" />
-              </a>
             </div>
           </section>
         </main>
       ) : (
-        <>
-          <aside className="sidebar">
-            <div className="side-intro">
-              <BookOpen size={18} aria-hidden="true" />
+        <div className="docs-layout">
+          <aside className={mobileNavOpen ? "docs-sidebar open" : "docs-sidebar"} aria-label="Documentation navigation">
+            <div className="sidebar-title">
+              <Compass size={18} aria-hidden="true" />
               <div>
-                <span>Sticks Lite Docs</span>
-                <small>Learn, reference, tools, classroom</small>
+                <span>Documentation</span>
+                <small>{STICKS_LITE_VERSION_LABEL}</small>
               </div>
             </div>
-
             {groupOrder.map((group) => {
-              const groupPages = filteredGroups[group];
-              if (groupPages.length === 0) return null;
+              const groupPages = groupedPages[group];
               return (
-                <section className="nav-group" key={group}>
+                <section className={`nav-group ${groupMeta[group].accent}`} key={group}>
                   <h2>{group}</h2>
                   {groupPages.map((page) => (
                     <a
@@ -343,7 +388,6 @@ otherwise:
                       onClick={(event) => navigateFromClick(event, page.id)}
                     >
                       <span>{page.title}</span>
-                      <ChevronRight size={15} aria-hidden="true" />
                     </a>
                   ))}
                 </section>
@@ -351,39 +395,73 @@ otherwise:
             })}
           </aside>
 
-          <main className="content">
-            <div className="doc-hero">
-              <div>
-                <span className="eyebrow">{activePage.group}</span>
-                <h1>{activePage.title}</h1>
-                <p>{activePage.description}</p>
+          <main className="doc-content">
+            <div className={`doc-title-card ${groupMeta[activePage.group].accent}`}>
+              <div className="breadcrumb">
+                <a href="#overview" onClick={(event) => navigateFromClick(event, "overview")}>Docs</a>
+                <ChevronRight size={14} aria-hidden="true" />
+                <span>{activePage.group}</span>
+              </div>
+              <h1>{activePage.title}</h1>
+              <p>{activePage.description}</p>
+              <div className="title-meta">
+                <span>
+                  <Hash size={14} aria-hidden="true" />
+                  {toc.length} sections
+                </span>
+                <span>
+                  <ClipboardList size={14} aria-hidden="true" />
+                  Copyable examples
+                </span>
               </div>
             </div>
+
             <article
               className="markdown"
               onClick={copyFromArticle}
               dangerouslySetInnerHTML={{ __html: html }}
             />
+
+            <nav className="doc-pager" aria-label="Previous and next pages">
+              {previousPage ? (
+                <a href={`#${previousPage.id}`} onClick={(event) => navigateFromClick(event, previousPage.id)}>
+                  <span>Previous</span>
+                  <strong>{previousPage.title}</strong>
+                </a>
+              ) : <span />}
+              {nextPage ? (
+                <a href={`#${nextPage.id}`} onClick={(event) => navigateFromClick(event, nextPage.id)}>
+                  <span>Next</span>
+                  <strong>{nextPage.title}</strong>
+                </a>
+              ) : <span />}
+            </nav>
           </main>
 
-          <aside className="toc" aria-label="On this page">
-            <h2>On this page</h2>
-            {toc.length === 0 ? (
-              <p>No sections</p>
-            ) : (
-              toc.map((item) => (
-                <a
-                  className={item.depth === 3 ? "indent" : ""}
-                  href={`#${item.id}`}
-                  key={item.id}
-                  onClick={(event) => scrollToHeading(event, item.id)}
-                >
-                  {item.title}
-                </a>
-              ))
-            )}
+          <aside className="page-rail" aria-label="On this page">
+            <div className="rail-card">
+              <h2>On this page</h2>
+              {toc.length === 0 ? (
+                <p>No sections</p>
+              ) : (
+                toc.map((item) => (
+                  <a
+                    className={item.depth === 3 ? "indent" : ""}
+                    href={`#${item.id}`}
+                    key={item.id}
+                    onClick={(event) => scrollToHeading(event, item.id)}
+                  >
+                    {item.title}
+                  </a>
+                ))
+              )}
+            </div>
+            <div className="rail-card rail-note">
+              <CheckCircle2 size={18} aria-hidden="true" />
+              <p>Examples use runnable `.slite` code unless they are labeled as terminal or text output.</p>
+            </div>
           </aside>
-        </>
+        </div>
       )}
     </div>
   );
