@@ -106,6 +106,41 @@ True
 
 `and` and `or` short-circuit: the right side is evaluated only when needed.
 
+## Assignment Shortcuts
+
+Assignment is a statement, not an expression. The shortcut forms work only on
+existing variable names.
+
+```slite
+score = 10
+score += 2
+score -= 1
+score *= 3
+score /= 2
+score %= 5
+say toText(score)
+```
+
+`+=`, `-=`, `*=`, `/=`, and `%=` use the same type rules as `+`, `-`, `*`,
+`/`, and `%`. Indexed targets are not supported with shortcut assignment, so
+write `items[0] = items[0] + 1` instead of `items[0] += 1`.
+
+`++` and `--` add or subtract one from an existing number variable.
+
+```slite
+count = 0
+count++
+count++
+count--
+say toText(count)
+```
+
+Expected output:
+
+```txt
+1
+```
+
 ## Text Conversion
 
 `+` does not mix text and numbers. Convert numbers with `toText`.

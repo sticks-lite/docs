@@ -48,6 +48,9 @@ The CLI adds a display space after nonempty prompts that do not already end in
 whitespace. Programmatic `RuntimeIO` receives the exact prompt value from the
 program.
 
+The CLI reads one line for each `ask`. In tests or redirected input, provide one
+line per prompt in the same order the program reaches them.
+
 ## Output Before Errors
 
 If a Sticks Lite error happens after output, `runSource` returns the output that

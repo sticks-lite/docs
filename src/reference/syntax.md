@@ -29,6 +29,30 @@ Two statements on one line are not valid.
 say "one" say "two"
 ```
 
+An expression can also be used as a statement. This is mainly useful for
+function calls whose return value is not needed.
+
+```slite
+items = [1, 2]
+push(items, 3)
+say toText(items)
+```
+
+Expected output:
+
+```txt
+[1, 2, 3]
+```
+
+## Names and Keywords
+
+Names can contain letters, numbers, and underscores, but they must not start
+with a number. Names are case-sensitive, so `score`, `Score`, and `SCORE` are
+three different names.
+
+Keywords such as `if`, `foreach`, `True`, `False`, `null`, `say`, and `ask`
+cannot be used as variable names.
+
 ## Comments
 
 Line comments start with `#`.
@@ -108,10 +132,30 @@ name = ask "Name?"
 say "Hello " + name
 ```
 
+`ask` is an expression. Its prompt must be text, and it returns the line of
+text that the user enters.
+
+## Commas
+
+Function arguments, list items, tuple items, and dictionary entries are
+separated with commas. Trailing commas are not supported.
+
+```txt
+items = [1, 2,]
+point = (10, 20,)
+```
+
+Use:
+
+```slite
+items = [1, 2]
+point = (10, 20)
+```
+
 ## Common Syntax Errors
 
 | Error | Typical cause |
 | --- | --- |
-| `SyntaxError` | missing colon, unfinished string, unexpected character, invalid `orif`, invalid `otherwise`, invalid `when` |
+| `SyntaxError` | missing colon, unfinished string, trailing comma, unexpected character, invalid `orif`, invalid `otherwise`, invalid `when` |
 | `IndentationError` | mixed tabs and spaces, a dedent that does not match an earlier block |
 | `FunctionError` | invalid function declaration or duplicate parameter name |

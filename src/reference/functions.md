@@ -68,6 +68,10 @@ Expected output:
 10
 ```
 
+Only top-level function declarations are pre-scanned. Function declarations are
+not run as normal statements, and a duplicate function name reports
+`FunctionError` before the rest of the program runs.
+
 ## Returns
 
 `return value` exits the function and returns `value`.

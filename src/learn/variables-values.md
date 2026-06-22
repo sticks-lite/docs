@@ -44,6 +44,24 @@ null
 | tuple | `(10, 20)` |
 | dictionary | `{"name": "Maya"}` |
 
+## Ask for Text
+
+Use `ask` when a program needs one line of input. The prompt after `ask` must be
+text, and the result is also text.
+
+```slite
+name = ask "Name?"
+say "Hello " + name
+```
+
+If the answer should be used as a number, convert it with `toNumber`.
+
+```slite
+scoreText = ask "Score?"
+score = toNumber(scoreText)
+say "Next score: " + toText(score + 1)
+```
+
 ## Constants with DEFINE
 
 `DEFINE` creates a top-level constant. Constants are useful for lesson settings
@@ -67,6 +85,27 @@ Out of 100
 `DEFINE` belongs at the top level. Do not put it inside an `if`, loop,
 function, or `attempt` block.
 
+## Updating Number Variables
+
+After a number variable exists, assignment shortcuts can make small updates
+easier to read.
+
+```slite
+score = 10
+score += 5
+score++
+say toText(score)
+```
+
+Expected output:
+
+```txt
+16
+```
+
+The shortcuts are optional. `score += 5` means the same kind of update as
+`score = score + 5`.
+
 ## Common Mistakes
 
 | Mistake | What happens |
@@ -74,6 +113,7 @@ function, or `attempt` block.
 | Changing a `DEFINE` constant | Sticks Lite reports `ConstantError`. |
 | Assigning to `random`, `toText`, or an error name | Protected names cannot be overwritten. |
 | Adding text and a number directly | Convert the number with `toText(...)`. |
+| Doing math with input from `ask` | Convert the text first with `toNumber(...)`. |
 
 ## Read More
 

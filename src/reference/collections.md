@@ -22,6 +22,7 @@ Expected output:
 ```
 
 List indexes must be whole numbers from `0` through `length(list) - 1`.
+Trailing commas are not supported in list literals.
 
 ## Tuples
 
@@ -42,6 +43,7 @@ Expected output:
 
 Empty tuples and one-item tuples are not supported. Use an empty list `[]` or a
 one-item list such as `[10]`.
+Trailing commas are not supported in tuple literals.
 
 ## Dictionaries
 
@@ -70,6 +72,7 @@ Assigning to a dictionary key creates or updates that key. Reading a missing key
 reports `KeyError`.
 
 If a dictionary literal repeats a key, the later entry is the value that remains.
+Trailing commas are not supported in dictionary literals.
 
 ## Nested Collections
 
