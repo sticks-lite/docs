@@ -127,6 +127,7 @@ export default defineConfig({
             { text: "CLI", link: "/tools/cli" },
             { text: "Running Files", link: "/tools/running-files" },
             { text: "Using TypeScript", link: "/tools/typescript" },
+            { text: "Browser Embedding", link: "/tools/browser" },
             { text: "Runtime I/O", link: "/tools/runtime-io" },
             { text: "Versioning", link: "/tools/versioning" }
           ]

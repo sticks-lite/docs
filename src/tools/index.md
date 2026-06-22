@@ -16,6 +16,7 @@ the interpreter from TypeScript.
 | [CLI](/tools/cli) | day-to-day `sticks` command usage |
 | [Running Files](/tools/running-files) | file and folder execution patterns |
 | [Using TypeScript](/tools/typescript) | calling `runSource`, `lex`, and `parse` from code |
+| [Browser Embedding](/tools/browser) | running Sticks Lite from browser apps without Node APIs |
 | [Runtime I/O](/tools/runtime-io) | connecting `ask` and `say` to your environment |
 | [Versioning](/tools/versioning) | where package and docs version text comes from |
 

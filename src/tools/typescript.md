@@ -55,6 +55,10 @@ Browser editors usually keep source, output, and pending input in application
 state. The interpreter does not touch the DOM; the host app decides how prompts
 and output are displayed.
 
+The public language core avoids Node-specific APIs. Browser code should import
+from `sticks-lite` and provide `RuntimeIO`; do not import the CLI files under
+`dist/cli`.
+
 ```ts
 import { runSource, type RuntimeIO } from "sticks-lite";
 
