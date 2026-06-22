@@ -103,6 +103,7 @@ export default defineConfig({
           items: [
             { text: "Overview", link: "/reference/" },
             { text: "Syntax", link: "/reference/syntax" },
+            { text: "Grammar", link: "/reference/grammar" },
             { text: "Values and Types", link: "/reference/values-types" },
             { text: "Variables and DEFINE", link: "/reference/variables-define" },
             { text: "Operators", link: "/reference/operators" },

@@ -13,6 +13,7 @@ exact rule for valid syntax or runtime behavior.
 | Topic | Use it to answer |
 | --- | --- |
 | [Syntax](/reference/syntax) | What does a valid statement or block look like? |
+| [Grammar](/reference/grammar) | What is the compact source grammar for statements, expressions, blocks, functions, comments, and error handlers? |
 | [Values and Types](/reference/values-types) | What values exist and how are they displayed? |
 | [Variables and DEFINE](/reference/variables-define) | How do assignment, constants, and protected names work? |
 | [Operators](/reference/operators) | Which operators exist and what types do they accept? |
