@@ -27,24 +27,28 @@ sticks --version
 
 The version is read from package metadata.
 
-## Run a First File
+## Create and Run a First Project
 
-Create `main.slite`:
-
-```slite
-say "Hello from Sticks Lite"
-```
-
-Run it:
+Create a starter project:
 
 ```sh
-sticks run main.slite
+sticks init hello-sticks
+cd hello-sticks
 ```
 
-Expected output:
+Run the generated `main.slite`:
 
-```txt
-Hello from Sticks Lite
+```sh
+sticks run
+```
+
+The starter program asks for input and prints a result. You can edit
+`main.slite`, then run it again.
+
+Check syntax without running:
+
+```sh
+sticks check
 ```
 
 ## Common Install Issues

@@ -29,8 +29,12 @@ description: Sticks Lite programs are saved as .slite files and run with the sti
           <pre><code>npm install -g sticks-lite</code></pre>
         </div>
         <div>
+          <p>Create</p>
+          <pre><code>sticks init hello-sticks</code></pre>
+        </div>
+        <div>
           <p>Run</p>
-          <pre><code>sticks run main.slite</code></pre>
+          <pre><code>cd hello-sticks&#10;sticks run</code></pre>
         </div>
         <div>
           <p>main.slite</p>
@@ -89,10 +93,12 @@ Sticks Lite focuses on the ideas students usually meet first:
 
 Sticks Lite programs are saved as `.slite` files.
 
-Run a single file:
+Create a starter project:
 
 ```sh
-sticks run main.slite
+sticks init hello-sticks
+cd hello-sticks
+sticks run
 ```
 
 Run a folder that contains an entry file named exactly `main.slite`:

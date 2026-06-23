@@ -28,16 +28,17 @@ Install globally:
 npm install -g sticks-lite
 ```
 
-Run a file:
+Create a starter project:
 
 ```sh
-sticks run main.slite
+sticks init my-project
+cd my-project
 ```
 
-Run a directory containing `main.slite`:
+Run the project:
 
 ```sh
-sticks run .
+sticks run
 ```
 
 Check syntax without running:
@@ -46,10 +47,10 @@ Check syntax without running:
 sticks check
 ```
 
-Create a starter project:
+Run a specific file when needed:
 
 ```sh
-sticks init my-project
+sticks run main.slite
 ```
 
 Check the installed version:

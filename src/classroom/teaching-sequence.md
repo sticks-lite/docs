@@ -9,7 +9,7 @@ This sequence keeps each new idea close to something students already saw.
 
 ## 1. Output and Files
 
-Start with `main.slite`, `say`, comments, and `sticks run`.
+Start with `sticks init`, `main.slite`, `say`, comments, and `sticks run`.
 
 ```slite
 say "Hello"

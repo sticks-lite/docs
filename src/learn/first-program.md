@@ -1,20 +1,38 @@
 ---
 title: Your First Program
-description: Create a .slite file, print output, and run it.
+description: Create a Sticks Lite project, read main.slite, and run it.
 ---
 
 # Your First Program
 
 <div class="lesson-goal">
-  <strong>Goal:</strong> Create `main.slite`, print two lines, and run the program with `sticks`.
+  <strong>Goal:</strong> Create a starter project, read `main.slite`, and run the program with `sticks`.
 </div>
 
 Sticks Lite source files end in `.slite`. A folder project uses an entry file
 named exactly `main.slite`.
 
-## Write the File
+## Create the Project
 
-Create `main.slite`:
+Use `sticks init` to create a project folder:
+
+```sh
+sticks init hello-sticks
+cd hello-sticks
+```
+
+The command creates:
+
+```txt
+hello-sticks/
+  main.slite
+  README.md
+```
+
+## Read main.slite
+
+Open the generated `main.slite`. It starts with a small program you can change.
+For a first tiny program, replace it with:
 
 ```slite
 say "Hello, Sticks Lite"
@@ -32,16 +50,16 @@ This program is running.
 
 ## Run It
 
-Run the file directly:
+Run the project:
+
+```sh
+sticks run
+```
+
+You can also run the entry file directly:
 
 ```sh
 sticks run main.slite
-```
-
-Or run the folder that contains `main.slite`:
-
-```sh
-sticks run .
 ```
 
 ## Add a Comment
@@ -73,7 +91,7 @@ The program keeps going.
 | Naming the file `main.txt` | Rename it to end in `.slite`. |
 | Naming the folder entry `Main.slite` | Rename it exactly to `main.slite`. |
 | Writing `say("Hello")` | Write `say "Hello"`. |
-| Running from the wrong folder | Use `sticks run path/to/main.slite` or move into the project folder first. |
+| Running from the wrong folder | Move into the project folder or run `sticks run path/to/project`. |
 
 ## Read More
 

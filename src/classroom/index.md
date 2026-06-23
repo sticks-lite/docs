@@ -26,11 +26,12 @@ one part at a time.
 
 ## Starter Routine
 
-1. Open or create `main.slite`.
-2. Run `sticks run`.
-3. Read the first error together if one appears.
-4. Change one line.
-5. Run again.
+1. Create the project with `sticks init lesson-one`.
+2. Open `lesson-one/main.slite`.
+3. Run `sticks run` from inside the project folder.
+4. Read the first error together if one appears.
+5. Change one line.
+6. Run again.
 
 ## Suggested Path
 
