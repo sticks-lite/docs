@@ -7,26 +7,47 @@ description: Practical command-line usage for the sticks command.
 
 The `sticks` CLI runs Sticks Lite source files.
 
+## Help and Version
+
+```sh
+sticks --help
+sticks --version
+```
+
+`sticks --help` shows the command list. `sticks --version` prints the installed
+package version.
+
+## Create a Project
+
+```sh
+sticks init my-project
+cd my-project
+sticks run
+```
+
+`sticks init` creates `main.slite` and `README.md` inside the new project
+folder. It does not overwrite existing files.
+
 ## Run the Current Folder
 
 When the current folder contains `main.slite`, run:
 
 ```sh
-sticks .
+sticks run
 ```
 
-If you run `sticks` without an argument, the CLI also looks for `main.slite` in
+If you run `sticks run` without an argument, the CLI looks for `main.slite` in
 the current folder.
 
 ```sh
-sticks
+sticks run
 ```
 
 ## Run a Specific File
 
 ```sh
-sticks main.slite
-sticks lessons/day-one.slite
+sticks run main.slite
+sticks run lessons/day-one.slite
 ```
 
 The file must end in `.slite`.
@@ -34,10 +55,21 @@ The file must end in `.slite`.
 ## Run a Project Folder
 
 ```sh
-sticks lessons/day-one
+sticks run lessons/day-one
 ```
 
 The folder must contain an entry file named exactly `main.slite`.
+
+## Check Without Running
+
+```sh
+sticks check
+sticks check main.slite
+sticks check lessons/day-one
+```
+
+`sticks check` parses a file or project and reports syntax problems without
+running the program. If no target is provided, it checks `main.slite`.
 
 ## Prompts
 

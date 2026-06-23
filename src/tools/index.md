@@ -31,13 +31,25 @@ npm install -g sticks-lite
 Run a file:
 
 ```sh
-sticks main.slite
+sticks run main.slite
 ```
 
 Run a directory containing `main.slite`:
 
 ```sh
-sticks .
+sticks run .
+```
+
+Check syntax without running:
+
+```sh
+sticks check
+```
+
+Create a starter project:
+
+```sh
+sticks init my-project
 ```
 
 Check the installed version:

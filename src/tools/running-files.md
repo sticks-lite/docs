@@ -18,7 +18,7 @@ lesson/
 Run:
 
 ```sh
-sticks lesson/hello.slite
+sticks run lesson/hello.slite
 ```
 
 The file extension must be `.slite`.
@@ -33,7 +33,7 @@ lesson/
 Run:
 
 ```sh
-sticks lesson
+sticks run lesson
 ```
 
 When the target is a folder, `main.slite` is required. The name must be exactly
@@ -41,13 +41,24 @@ lowercase `main.slite`.
 
 ## Default Target
 
-If no target is provided, `sticks` uses `main.slite` in the current directory.
+If no target is provided, `sticks run` uses `main.slite` in the current
+directory.
 
 ```sh
-sticks
+sticks run
 ```
 
 This is useful when each student has one project folder.
+
+## Check Before Running
+
+```sh
+sticks check
+sticks check lesson/hello.slite
+```
+
+`sticks check` uses the same file and folder target rules as `sticks run`, but
+it parses the source without executing it.
 
 ## File Error Checklist
 

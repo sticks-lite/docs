@@ -30,7 +30,7 @@ description: Sticks Lite programs are saved as .slite files and run with the sti
         </div>
         <div>
           <p>Run</p>
-          <pre><code>sticks main.slite</code></pre>
+          <pre><code>sticks run main.slite</code></pre>
         </div>
         <div>
           <p>main.slite</p>
@@ -92,13 +92,13 @@ Sticks Lite programs are saved as `.slite` files.
 Run a single file:
 
 ```sh
-sticks main.slite
+sticks run main.slite
 ```
 
 Run a folder that contains an entry file named exactly `main.slite`:
 
 ```sh
-sticks .
+sticks run .
 ```
 
 The exact lowercase filename keeps classroom projects consistent across Windows, macOS, and Linux.

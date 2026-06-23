@@ -35,13 +35,13 @@ This program is running.
 Run the file directly:
 
 ```sh
-sticks main.slite
+sticks run main.slite
 ```
 
 Or run the folder that contains `main.slite`:
 
 ```sh
-sticks .
+sticks run .
 ```
 
 ## Add a Comment
@@ -73,7 +73,7 @@ The program keeps going.
 | Naming the file `main.txt` | Rename it to end in `.slite`. |
 | Naming the folder entry `Main.slite` | Rename it exactly to `main.slite`. |
 | Writing `say("Hello")` | Write `say "Hello"`. |
-| Running from the wrong folder | Use `sticks path/to/main.slite` or move into the project folder first. |
+| Running from the wrong folder | Use `sticks run path/to/main.slite` or move into the project folder first. |
 
 ## Read More
 

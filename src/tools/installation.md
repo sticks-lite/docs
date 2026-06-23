@@ -38,7 +38,7 @@ say "Hello from Sticks Lite"
 Run it:
 
 ```sh
-sticks main.slite
+sticks run main.slite
 ```
 
 Expected output:
