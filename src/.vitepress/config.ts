@@ -129,6 +129,7 @@ export default defineConfig({
             { text: "Using TypeScript", link: "/tools/typescript" },
             { text: "Browser Embedding", link: "/tools/browser" },
             { text: "Runtime I/O", link: "/tools/runtime-io" },
+            { text: "Testing and Release Checks", link: "/tools/testing-release" },
             { text: "Versioning", link: "/tools/versioning" }
           ]
         }

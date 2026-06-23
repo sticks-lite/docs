@@ -27,6 +27,8 @@ npm run check
 - `src/learn/` contains the guided beginner path.
 - `src/reference/` contains formal language and API reference pages.
 - `src/tools/` contains installation, CLI, package, and runtime usage pages.
+- `src/tools/testing-release.md` describes the centralized test and release
+  checks used by the package repo.
 - `src/classroom/` contains short teacher-facing guidance.
 - `src/version.ts` reads the package version from metadata.
 - `src/content.ts` keeps the built-in reference data visible to existing docs

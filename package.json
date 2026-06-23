@@ -1,6 +1,6 @@
 {
   "name": "@brisqdev/sticks-lite-docs",
-  "version": "1.0.24",
+  "version": "1.0.26",
   "private": true,
   "type": "module",
   "description": "Documentation website for Sticks Lite.",

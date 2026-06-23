@@ -18,6 +18,7 @@ the interpreter from TypeScript.
 | [Using TypeScript](/tools/typescript) | calling `runSource`, `lex`, and `parse` from code |
 | [Browser Embedding](/tools/browser) | running Sticks Lite from browser apps without Node APIs |
 | [Runtime I/O](/tools/runtime-io) | connecting `ask` and `say` to your environment |
+| [Testing and Release Checks](/tools/testing-release) | understanding package tests and release verification |
 | [Versioning](/tools/versioning) | where package and docs version text comes from |
 
 ## Main Commands
