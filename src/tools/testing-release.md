@@ -80,6 +80,16 @@ npm run package:dry-run
 
 The dry run checks which files would be published to npm.
 
+## Release Notes And Admin Files
+
+The package repository keeps public administration files at its root:
+
+- `CHANGELOG.md` records public release history.
+- `CONTRIBUTING.md` explains contribution expectations.
+- `RELEASE.md` contains the formal release checklist.
+- `SECURITY.md`, `SUPPORT.md`, and `CODE_OF_CONDUCT.md` describe community and
+  safety expectations.
+
 ## Package Contents
 
 The npm package is intentionally small. Published package contents are limited
